@@ -1,3 +1,4 @@
+import 'package:boku_gg/views/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
