@@ -9,6 +9,7 @@ class AnimeThumbnail extends FloatingActionButton {
     required String title,
     required VoidCallback onPressed,
   }) : super(
+            heroTag: null,
             onPressed: onPressed,
             child: SizedBox(
               child: Stack(

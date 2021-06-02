@@ -1,4 +1,5 @@
 import 'package:boku_gg/commons/url_strings.dart';
+import 'package:boku_gg/models/anime_model.dart';
 import 'package:boku_gg/services/api/anime_type.dart';
 import 'package:boku_gg/services/api/api_service.dart';
 import 'package:get/get.dart';
@@ -17,6 +18,9 @@ class AnimeController extends GetxController {
 
   var popularAnime = AnimeType(URLStrings.getPopularUrl).obs;
   var recentAnime = AnimeType(URLStrings.getRecentUrl).obs;
+
+  Rx<Anime>? activeAnime;
+  var activeAnimeId = null.obs;
 
   @override
   void onInit() {
@@ -43,13 +47,29 @@ class AnimeController extends GetxController {
   void fetchAnimeDisplayList(Rx<AnimeType> type) async {
     try {
       isLoading(true);
-      var popularAnime =
+      var animeList =
           await ApiService.fetchAnimeDisplay(type.value.url, type.value.page);
-      if (popularAnime != null) {
-        type.value.animeDisplayList.addAll(popularAnime);
+      if (animeList != null) {
+        type.value.animeDisplayList.addAll(animeList);
         type.refresh();
         //print(popularAnime.map((e) => print(e)));
         type.value.page++;
+      }
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  void fetchSingleAnimeDetails(String id) async {
+    try {
+      isLoading(true);
+      Anime? responseAnime =
+          await ApiService.fetchSingleAnime(URLStrings.getAnimeDetailsUrl, id);
+      if (responseAnime != null) {
+        print(responseAnime.title);
+        activeAnime = responseAnime.obs;
+        activeAnime!.refresh();
+        //print(popularAnime.map((e) => print(e)));
       }
     } finally {
       isLoading(false);
