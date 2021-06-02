@@ -16,12 +16,14 @@ class AnimeDisplayPage extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 36,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Colors.white,
                 ),
               ),
             ),
             Expanded(
-              child: AnimeGridView(),
+              child: AnimeGridView(
+                animeDisplayType: animeController.popularAnime.value,
+              ),
             ),
             Obx(() {
               if (animeController.isLoading.value)
