@@ -1,5 +1,6 @@
 import 'package:boku_gg/models/anime_display_model.dart';
 import 'package:boku_gg/services/api_service.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class AnimeController extends GetxController {
@@ -11,11 +12,26 @@ class AnimeController extends GetxController {
   int popularPage = 1;
   int recentPage = 1;
 
+  ScrollController popularScrollController = ScrollController();
+  ScrollController recentScrollController = ScrollController();
+
   @override
   void onInit() {
     fetchPopularAnimeList();
     fetchRecentAnimeList();
     super.onInit();
+    popularScrollController.addListener(() {
+      if (popularScrollController.position.pixels ==
+          popularScrollController.position.maxScrollExtent) {
+        fetchPopularAnimeList();
+      }
+    });
+    recentScrollController.addListener(() {
+      if (recentScrollController.position.pixels ==
+          recentScrollController.position.maxScrollExtent) {
+        fetchRecentAnimeList();
+      }
+    });
   }
 
   void fetchPopularAnimeList() async {
@@ -24,7 +40,7 @@ class AnimeController extends GetxController {
       var popularAnime = await ApiService.fetchPopularAnimeDisplay(popularPage);
       if (popularAnime != null) {
         popularAnimeDisplayList.addAll(popularAnime);
-        print(popularAnime.toString());
+        //print(popularAnime.toString());
         popularPage++;
       }
     } finally {
