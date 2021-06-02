@@ -1,4 +1,3 @@
-import 'package:boku_gg/widgets/anime_thumbnail.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {

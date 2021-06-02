@@ -1,4 +1,3 @@
-import 'package:boku_gg/commons/url_strings.dart';
 import 'package:boku_gg/models/anime_display_model.dart';
 import 'package:boku_gg/models/anime_model.dart';
 import 'package:http/http.dart' as http;
