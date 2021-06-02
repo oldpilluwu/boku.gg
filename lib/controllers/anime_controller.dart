@@ -63,10 +63,11 @@ class AnimeController extends GetxController {
   void fetchSingleAnimeDetails(String id) async {
     try {
       isLoading(true);
-      var responseAnime =
+      Anime? responseAnime =
           await ApiService.fetchSingleAnime(URLStrings.getAnimeDetailsUrl, id);
       if (responseAnime != null) {
-        activeAnime = responseAnime as Rx<Anime>?;
+        print(responseAnime.title);
+        activeAnime = responseAnime.obs;
         activeAnime!.refresh();
         //print(popularAnime.map((e) => print(e)));
       }

@@ -1,7 +1,6 @@
 import 'package:boku_gg/widgets/episode_button.dart';
 import 'package:flutter/material.dart';
 
-
 class AnimePage extends StatelessWidget {
   AnimePage({
     required this.imageLink,
@@ -45,12 +44,14 @@ class AnimePage extends StatelessWidget {
                     width: 160,
                   ),
                   Expanded(
-                    child: Text(title,
+                    child: Text(
+                      title,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 30,
                         color: textColor,
-                      ),),
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -58,40 +59,49 @@ class AnimePage extends StatelessWidget {
                 child: ListView(
                   children: [
                     Container(
-                      child: Text("Description: ",
+                      child: Text(
+                        "Description: ",
                         textAlign: TextAlign.start,
                         style: TextStyle(
                           fontSize: 20,
                           color: textColor,
-                        ),),
+                        ),
+                      ),
                     ),
                     SizedBox(height: 5),
-                    Text(summary, textAlign: TextAlign.start,style: TextStyle(
-                      fontSize: 13,
-                      color: textColor,
-                    ),),
-
-
+                    Text(
+                      summary,
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: textColor,
+                      ),
+                    ),
                     SizedBox(height: 20),
                     Container(
                       height: 25,
                       color: statusBarColor,
-                      child: Text("Status: " + status,
+                      child: Text(
+                        "Status: " + status,
                         textAlign: TextAlign.start,
                         style: TextStyle(
                           fontSize: 20,
                           color: statusTextColor,
-                        ),),
+                        ),
+                      ),
                     ),
                     SizedBox(height: 20),
-                    Text("Total Episodes: " + totalEpisodes.toString(),
+                    Text(
+                      "Total Episodes: " + totalEpisodes.toString(),
                       textAlign: TextAlign.start,
                       style: TextStyle(
                         fontSize: 15,
                         color: textColor,
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     GridView.count(
                       padding: const EdgeInsets.all(2),
                       controller: ScrollController(),
@@ -105,22 +115,21 @@ class AnimePage extends StatelessWidget {
                         // EpisodeButton(onPressed: () {}, episodeNumber: 1),
                         // EpisodeButton(onPressed: () {}, episodeNumber: 1),
                         // EpisodeButton(onPressed: () {}, episodeNumber: 1),
-                        ...List.generate(220, (index) => EpisodeButton
-                          (onPressed: () {},
-                          episodeNumber: index+1,)),
-
+                        ...List.generate(
+                            totalEpisodes,
+                            (index) => EpisodeButton(
+                                  onPressed: () {},
+                                  episodeNumber: index + 1,
+                                )),
                       ],
                     )
-
-
                   ],
                 ),
               ),
               // Expanded(
               //   child: ,
               // ),
-            ]
-        ),
+            ]),
       ),
     );
   }
