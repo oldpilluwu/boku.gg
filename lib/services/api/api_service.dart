@@ -22,4 +22,13 @@ class ApiService {
       return animeDisplayFromJson(jsonString);
     }
   }
+
+  static Future<List<AnimeDisplay>?> fetchAnimeDisplay(
+      String? url, int? page) async {
+    var response = await client.get(Uri.parse(url! + '/$page'));
+    if (response.statusCode == 200) {
+      var jsonString = response.body;
+      return animeDisplayFromJson(jsonString);
+    }
+  }
 }

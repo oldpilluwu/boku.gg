@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'boku.gg',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        brightness: Brightness.dark,
       ),
       home: PlaceHolderPage(),
     );
