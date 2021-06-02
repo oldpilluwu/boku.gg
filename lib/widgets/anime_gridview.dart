@@ -1,6 +1,5 @@
 import 'package:boku_gg/commons/controller.dart';
 import 'package:boku_gg/models/anime_display_model.dart';
-import 'package:boku_gg/views/anime_page.dart';
 import 'package:boku_gg/widgets/anime_thumbnail.dart';
 import 'package:boku_gg/widgets/loading.dart';
 import 'package:flutter/material.dart';
