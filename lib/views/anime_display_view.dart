@@ -22,7 +22,7 @@ class AnimeDisplayPage extends StatelessWidget {
             ),
             Expanded(
               child: AnimeGridView(
-                animeDisplayType: animeController.popularAnime.value,
+                animeDisplayType: animeController.popularAnime,
               ),
             ),
             Obx(() {
