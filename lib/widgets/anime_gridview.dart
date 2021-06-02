@@ -13,13 +13,13 @@ class AnimeGridView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => GridView.count(
-        controller: animeDisplayType.scrollController,
+        controller: animeDisplayType.value.scrollController,
         crossAxisSpacing: 2,
         mainAxisSpacing: 2,
         crossAxisCount: 2,
         childAspectRatio: 0.8,
-        children:
-            animeDisplayType.animeDisplayList.map<Widget>((AnimeDisplay anime) {
+        children: animeDisplayType.value.animeDisplayList
+            .map<Widget>((AnimeDisplay anime) {
           return AnimeThumbnail(
               imageLink: anime.image,
               id: anime.id,

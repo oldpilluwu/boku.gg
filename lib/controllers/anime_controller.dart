@@ -25,11 +25,6 @@ class AnimeController extends GetxController {
 
     super.onInit();
 
-    if (popularAnime.value.scrollController == null)
-      print('scroll controller not okay');
-    else
-      print('Scroll controller okay');
-
     popularAnime.value.scrollController!.addListener(() {
       if (popularAnime.value.scrollController!.position.pixels ==
           popularAnime.value.scrollController!.position.maxScrollExtent) {
@@ -53,7 +48,7 @@ class AnimeController extends GetxController {
       if (popularAnime != null) {
         type.value.animeDisplayList.addAll(popularAnime);
         type.refresh();
-        print(popularAnime.map((e) => print(e)));
+        //print(popularAnime.map((e) => print(e)));
         type.value.page++;
       }
     } finally {
