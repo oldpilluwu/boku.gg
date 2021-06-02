@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.blue,
+        brightness: Brightness.dark,
       ),
       home: PlaceHolderPage(),
     );
