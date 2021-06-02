@@ -1,4 +1,5 @@
 import 'package:boku_gg/widgets/episode_button.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class AnimePage extends StatelessWidget {
@@ -36,9 +37,16 @@ class AnimePage extends StatelessWidget {
                 children: [
                   Container(
                     color: Colors.white12,
-                    child: Image(
-                      image: NetworkImage(imageLink),
-                      fit: BoxFit.fill,
+                    // child: Image(
+                    //   image: NetworkImage(imageLink),
+                    //   fit: BoxFit.fill,
+                    // ),
+                    child: CachedNetworkImage(
+                      imageUrl: imageLink,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) =>
+                          Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                     height: 200,
                     width: 160,
