@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AnimeDisplayPage extends StatelessWidget {
+  final animeTypeController;
+
+  AnimeDisplayPage({this.animeTypeController});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,7 +26,7 @@ class AnimeDisplayPage extends StatelessWidget {
             ),
             Expanded(
               child: AnimeGridView(
-                animeDisplayType: animeController.popularAnime,
+                animeDisplayType: animeTypeController,
               ),
             ),
             Obx(() {

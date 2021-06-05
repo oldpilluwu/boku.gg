@@ -1,6 +1,4 @@
-import 'package:boku_gg/views/anime_page.dart';
 import 'package:boku_gg/views/tab_bar_home_page.dart';
-import 'package:boku_gg/widgets/anime_display_view.dart';
 import 'package:flutter/material.dart';
 
 class PlaceHolderPage extends StatelessWidget {
@@ -8,6 +6,7 @@ class PlaceHolderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: TabBarHomePage(),
+
       // body: AnimePage(
       //   id: "naruto",
       //   title: "Naruto",
