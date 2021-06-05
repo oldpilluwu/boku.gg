@@ -15,21 +15,23 @@ class AnimeGridView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => GridView.count(
+        padding: const EdgeInsets.all(8),
         controller: animeDisplayType.value.scrollController,
-        crossAxisSpacing: 2,
-        mainAxisSpacing: 2,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
         crossAxisCount: 2,
         childAspectRatio: 0.8,
         children: animeDisplayType.value.animeDisplayList
             .map<Widget>((AnimeDisplay anime) {
-          return AnimeThumbnail(
-              imageLink: anime.image,
-              id: anime.id,
-              title: anime.title,
-              onPressed: () {
-                animeController.fetchSingleAnimeDetails(anime.id);
-                Get.to(() => LoadingScreen());
-              });
+          return  AnimeThumbnail(
+                  imageLink: anime.image,
+                  id: anime.id,
+                  title: anime.title,
+                  onPressed: () {
+                    animeController.fetchSingleAnimeDetails(anime.id);
+                    Get.to(() => LoadingScreen());
+                  });
+
         }).toList(),
       ),
     );

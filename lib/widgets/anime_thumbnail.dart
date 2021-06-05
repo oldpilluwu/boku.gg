@@ -1,7 +1,11 @@
+import 'dart:ui';
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AnimeThumbnail extends FloatingActionButton {
+class AnimeThumbnail extends GestureDetector {
   AnimeThumbnail({
     Color textColor = Colors.white,
     required String imageLink,
@@ -9,28 +13,32 @@ class AnimeThumbnail extends FloatingActionButton {
     required String title,
     required VoidCallback onPressed,
   }) : super(
-            heroTag: null,
-            onPressed: onPressed,
-            child: SizedBox(
+            // backgroundColor: Color(0xff282828),
+            // heroTag: null,
+            onTap: onPressed,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              // padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
               child: Stack(
                 fit: StackFit.expand,
                 children: <Widget>[
-                  // Image(
-                  //   image: NetworkImage(imageLink),
-                  //   alignment: Alignment.center,
-                  //   height: double.infinity,
-                  //   width: double.infinity,
-                  //   fit: BoxFit.fill,
-                  // ),
-                  CachedNetworkImage(
-                    imageUrl: imageLink,
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) =>
-                        Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: CachedNetworkImage(
+                      imageUrl: imageLink,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) =>
+                          Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    ),
                   ),
 
-                  Container(
+                  ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child:
+                      Container(
                     padding: const EdgeInsets.all(5.0),
                     alignment: Alignment.bottomCenter,
                     decoration: BoxDecoration(
@@ -49,7 +57,8 @@ class AnimeThumbnail extends FloatingActionButton {
                       style: TextStyle(color: Colors.white, fontSize: 16.0),
                       textAlign: TextAlign.start,
                     ),
-                  ),
+                  )
+  ),
                 ],
               ),
             ));
