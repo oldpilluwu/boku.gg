@@ -1,5 +1,4 @@
 import 'package:boku_gg/models/anime_display_model.dart';
-import 'package:boku_gg/services/api/api_service.dart';
 import 'package:flutter/material.dart';
 
 class AnimeType {

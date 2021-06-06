@@ -14,16 +14,6 @@ class AnimeDisplayPage extends StatelessWidget {
       child: SafeArea(
         child: Column(
           children: [
-            SizedBox(
-              child: Text(
-                "Popular Right Now",
-                style: TextStyle(
-                  fontSize: 36,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ),
             Expanded(
               child: AnimeGridView(
                 animeDisplayType: animeTypeController,

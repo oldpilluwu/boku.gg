@@ -11,4 +11,8 @@ class URLStrings {
   static String getRecentUrlFromPage(int page) {
     return getRecentUrl + '/$page';
   }
+
+  static String getAnimeEpisodeUrl(String id, int episode) {
+    return getAnimeDetailsUrl + '/$id/$episode';
+  }
 }

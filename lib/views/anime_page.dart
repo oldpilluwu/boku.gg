@@ -1,6 +1,9 @@
+import 'package:boku_gg/commons/controller.dart';
 import 'package:boku_gg/widgets/episode_button.dart';
+import 'package:boku_gg/widgets/episode_quality_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/state_manager.dart';
 
 class AnimePage extends StatelessWidget {
   AnimePage({
@@ -112,11 +115,43 @@ class AnimePage extends StatelessWidget {
                         shrinkWrap: true,
                         crossAxisCount: 4,
                         childAspectRatio: 2,
+                        addAutomaticKeepAlives: false,
                         children: [
                           ...List.generate(
                               totalEpisodes,
                               (index) => EpisodeButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      animeController.fetchAnimeEpisode(
+                                          animeController.activeAnime!.value.id,
+                                          index + 1);
+                                      showModalBottomSheet(
+                                          context: context,
+                                          builder: (context) {
+                                            return Obx(() {
+                                              if (animeController
+                                                  .episodeLoading.value)
+                                                return Center(
+                                                  child:
+                                                      CircularProgressIndicator(),
+                                                );
+                                              else
+                                                return ListView(
+                                                  children: <Widget>[
+                                                    ...animeController
+                                                        .episodeQuality!
+                                                        .map((element) =>
+                                                            EpisodeQuality(
+                                                                quality: element
+                                                                    .quality,
+                                                                link: element
+                                                                    .link,
+                                                                onPressed:
+                                                                    () {})),
+                                                  ],
+                                                );
+                                            });
+                                          });
+                                    },
                                     episodeNumber: index + 1,
                                   )),
                         ],
