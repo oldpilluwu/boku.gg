@@ -47,7 +47,7 @@ class ApiService {
         await client.get(Uri.parse(URLStrings.getAnimeEpisodeUrl(id, episode)));
     if (response.statusCode == 200) {
       var jsonString = response.body;
-      print(jsonString);
+      //print(jsonString);
       return episodeFromJson(jsonString);
     }
   }

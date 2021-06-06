@@ -26,6 +26,8 @@ class AnimePage extends StatelessWidget {
   final Color statusBarColor = Colors.greenAccent;
   final Color statusTextColor = Color(0xFF282828);
 
+  final ScrollController controller = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,11 +113,11 @@ class AnimePage extends StatelessWidget {
                       ),
                       GridView.count(
                         padding: const EdgeInsets.all(2),
-                        controller: ScrollController(),
+                        controller: controller,
                         shrinkWrap: true,
                         crossAxisCount: 4,
                         childAspectRatio: 2,
-                        addAutomaticKeepAlives: false,
+                        addAutomaticKeepAlives: true,
                         children: [
                           ...List.generate(
                               totalEpisodes,
