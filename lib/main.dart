@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         brightness: Brightness.dark,
+        fontFamily: 'Comfortaa'
       ),
       home: PlaceHolderPage(),
     );

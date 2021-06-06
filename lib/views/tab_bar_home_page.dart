@@ -58,6 +58,7 @@ class TabBarHomePage extends StatelessWidget {
                   animeDisplayType: animeController.recentAnime,
                 ),
               ),
+
             ],
           )
       ),
