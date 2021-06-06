@@ -17,7 +17,6 @@ class AnimePage extends StatelessWidget {
   final String title;
   final String status;
   final List genreList;
-  // final int releasedEpisodes;
   final int totalEpisodes;
   final String summary;
   final Color textColor = Color(0xFFDEDEDE);
@@ -38,10 +37,6 @@ class AnimePage extends StatelessWidget {
                   children: [
                     Container(
                       color: Colors.white12,
-                      // child: Image(
-                      //   image: NetworkImage(imageLink),
-                      //   fit: BoxFit.fill,
-                      // ),
                       child: CachedNetworkImage(
                         imageUrl: imageLink,
                         fit: BoxFit.cover,
@@ -118,12 +113,6 @@ class AnimePage extends StatelessWidget {
                         crossAxisCount: 4,
                         childAspectRatio: 2,
                         children: [
-                          // EpisodeButton(onPressed: () {}, episodeNumber: 1000),
-                          // EpisodeButton(onPressed: () {}, episodeNumber: 1),
-                          // EpisodeButton(onPressed: () {}, episodeNumber: 1),
-                          // EpisodeButton(onPressed: () {}, episodeNumber: 1),
-                          // EpisodeButton(onPressed: () {}, episodeNumber: 1),
-                          // EpisodeButton(onPressed: () {}, episodeNumber: 1),
                           ...List.generate(
                               totalEpisodes,
                               (index) => EpisodeButton(
