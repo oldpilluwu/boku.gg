@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 void main() async {
   Get.put(AnimeController());
+  Get.put(ScrollController());
   runApp(MyApp());
 }
 
@@ -16,10 +17,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'boku.gg',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        brightness: Brightness.dark,
-        fontFamily: 'Comfortaa'
-      ),
+          primarySwatch: Colors.blue,
+          brightness: Brightness.dark,
+          fontFamily: 'Comfortaa'),
       home: PlaceHolderPage(),
     );
   }
