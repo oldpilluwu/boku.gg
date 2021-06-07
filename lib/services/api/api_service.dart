@@ -51,4 +51,23 @@ class ApiService {
       return episodeFromJson(jsonString);
     }
   }
+
+  static Future<List<AnimeDisplay>?> fetchSearchAnimeDisplay(
+      String searchText, int page) async {
+    var response =
+        await client.get(Uri.parse(URLStrings.getSearchUrl(searchText, page)));
+    if (response.statusCode == 200) {
+      var jsonString = response.body;
+      return animeDisplayFromJson(jsonString);
+    }
+  }
+
+  static Future<List<AnimeDisplay>?> fetchGenreAnimeDisplay(
+      String genre) async {
+    var response = await client.get(Uri.parse(URLStrings.getGenreUrl(genre)));
+    if (response.statusCode == 200) {
+      var jsonString = response.body;
+      return animeDisplayFromJson(jsonString);
+    }
+  }
 }

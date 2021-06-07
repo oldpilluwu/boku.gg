@@ -1,9 +1,11 @@
 import 'package:boku_gg/commons/controller.dart';
+import 'package:boku_gg/views/video_player_page.dart';
 import 'package:boku_gg/widgets/episode_button.dart';
 import 'package:boku_gg/widgets/episode_quality_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
+import 'package:get/get.dart';
 
 class AnimePage extends StatelessWidget {
   AnimePage({
@@ -139,14 +141,14 @@ class AnimePage extends StatelessWidget {
                                                   children: <Widget>[
                                                     ...animeController
                                                         .episodeQuality!
-                                                        .map((element) =>
-                                                            EpisodeQuality(
-                                                                quality: element
-                                                                    .quality,
-                                                                link: element
-                                                                    .link,
-                                                                onPressed:
-                                                                    () {})),
+                                                        .map(
+                                                      (element) =>
+                                                          EpisodeQuality(
+                                                        quality:
+                                                            element.quality,
+                                                        link: element.link,
+                                                      ),
+                                                    ),
                                                   ],
                                                 );
                                             });

@@ -6,28 +6,27 @@ import 'package:get/get.dart';
 class EpisodeQuality extends StatelessWidget {
   String quality;
   String link;
-  VoidCallback onPressed;
 
-  EpisodeQuality(
-      {required this.quality, required this.link, required this.onPressed});
+  EpisodeQuality({required this.quality, required this.link});
 
   @override
   Widget build(BuildContext context) {
-    String slicedQualityText = (quality.replaceAll(" - mp4)", "")).replaceAll("(", "");
-    if (slicedQualityText == "HDP")
-      slicedQualityText = "HDP (Recommmended)";
+    String slicedQualityText =
+        (quality.replaceAll(" - mp4)", "")).replaceAll("(", "");
+    if (slicedQualityText == "HDP") slicedQualityText = "HDP (Recommmended)";
     return GestureDetector(
       onTap: () {
         Get.to(() => VideoPlayerPage(videoLink: link));
         print(link);
-        },
+      },
       child: Container(
         height: 70,
         // color: ColorPalette.secondaryColor,
-            padding: EdgeInsets.all(15),
-            child: Text(slicedQualityText,),
+        padding: EdgeInsets.all(15),
+        child: Text(
+          slicedQualityText,
+        ),
       ),
     );
   }
-
 }

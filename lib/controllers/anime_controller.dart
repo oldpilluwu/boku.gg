@@ -140,4 +140,11 @@ class AnimeController extends GetxController {
   //     isLoading(false);
   //   }
   // }
+
+  @override
+  void onClose() {
+    popularAnime.value.scrollController!.dispose();
+    recentAnime.value.scrollController!.dispose();
+    super.onClose();
+  }
 }
