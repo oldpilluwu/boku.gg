@@ -1,7 +1,9 @@
 import 'package:boku_gg/controllers/anime_controller.dart';
 import 'package:boku_gg/controllers/search_controller.dart';
+import 'package:boku_gg/views/browse_page.dart';
 import 'package:boku_gg/views/home_page.dart';
 import 'package:boku_gg/views/placeholder_page.dart';
+import 'package:boku_gg/views/search_result.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           brightness: Brightness.dark,
           fontFamily: 'Comfortaa'),
-      home: PlaceHolderPage(),
+      home: SearchResultPage(),
     );
   }
 }
