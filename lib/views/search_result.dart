@@ -1,13 +1,24 @@
 import 'package:boku_gg/commons/color_palette.dart';
-import 'package:boku_gg/commons/genre_list.dart';
-import 'package:boku_gg/widgets/genre_button.dart';
+import 'package:boku_gg/commons/controller.dart';
+import 'package:boku_gg/controllers/search_controller.dart';
+import 'package:boku_gg/models/anime_display_model.dart';
+
 import 'package:boku_gg/widgets/listed_anime.dart';
+import 'package:boku_gg/widgets/loading.dart';
 import 'package:boku_gg/widgets/search_bar.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class SearchResultPage extends StatelessWidget {
+  RxList<AnimeDisplay> animeList;
+  ScrollController controller;
+
+  SearchResultPage({
+    required this.animeList,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,51 +36,47 @@ class SearchResultPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SearchBar(),
-
           Container(
               padding: EdgeInsets.fromLTRB(10, 10, 0, 10),
-              child: Text("Search Results",
+              child: Text(
+                "Search Results",
                 style: TextStyle(
                   fontSize: 24,
                   // fontWeight: FontWeight.w400,
                   color: ColorPalette.textColor,
                 ),
-              )
-          ),
-
+              )),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(10.0),
-              child: ListView(
-                children: [
-
-                  //Use your search results here
-
-                  ListedAnime(
-                      title: "That Time I got reincarnated as a slime",
-                      id: "naruto",
-                      imageLink: "https://gogocdn.net/images/anime/N/naruto.jpg",
-                      onPressed: () {}),
-
-                  ListedAnime(
-                      title: "Naruto",
-                      id: "naruto",
-                      imageLink: "https://gogocdn.net/images/anime/N/naruto.jpg",
-                      onPressed: () {}),
-
-                  ListedAnime(
-                      title: "Naruto",
-                      id: "naruto",
-                      imageLink: "https://gogocdn.net/images/anime/N/naruto.jpg",
-                      onPressed: () {print("eeeeeeeee");}),
-
-                ],
-              )
+              child: Obx(() {
+                return ListView.builder(
+                  controller: controller,
+                  itemCount: animeList.length,
+                  itemBuilder: (context, index) {
+                    return ListedAnime(
+                      title: animeList[index].title,
+                      id: animeList[index].id,
+                      imageLink: animeList[index].image,
+                      onPressed: () {
+                        animeController
+                            .fetchSingleAnimeDetails(animeList[index].id);
+                        Get.to(() => LoadingScreen());
+                      },
+                    );
+                  },
+                );
+              }),
             ),
           ),
+          Obx(() {
+            if (searchController.isLoading.value)
+              return Center(child: LinearProgressIndicator());
+            else
+              return Container();
+          })
         ],
       ),
     );
   }
-
 }

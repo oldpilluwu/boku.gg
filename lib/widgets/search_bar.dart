@@ -1,5 +1,8 @@
 import 'package:boku_gg/commons/color_palette.dart';
+import 'package:boku_gg/commons/controller.dart';
+import 'package:boku_gg/views/search_result.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SearchBar extends StatelessWidget {
   @override
@@ -18,16 +21,21 @@ class SearchBar extends StatelessWidget {
               blurRadius: 50,
               color: ColorPalette.primaryColor.withOpacity(.23),
             )
-          ]
-      ),
+          ]),
 
       child: Row(
         children: [
           Expanded(
             child: TextField(
-
               // ADD FUNCTIONALITY
               // controller: (value) {print(value);},
+              onSubmitted: (text) {
+                searchController.fetchSearchDisplayList(text);
+                Get.to(() => SearchResultPage(
+                      animeList: searchController.searchAnimeList,
+                      controller: searchController.scrollController,
+                    ));
+              },
 
               style: TextStyle(
                 color: ColorPalette.primaryColor,
@@ -40,7 +48,10 @@ class SearchBar extends StatelessWidget {
                 // fillColor: Colors.red,
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
-                suffixIcon: Icon(Icons.search_rounded, color: ColorPalette.secondaryColor,),
+                suffixIcon: Icon(
+                  Icons.search_rounded,
+                  color: ColorPalette.secondaryColor,
+                ),
               ),
             ),
           ),

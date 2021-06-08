@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           brightness: Brightness.dark,
           fontFamily: 'Comfortaa'),
-      home: SearchResultPage(),
+      home: BrowsePage(),
     );
   }
 }
