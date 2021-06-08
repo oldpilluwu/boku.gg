@@ -21,6 +21,7 @@ class SearchController extends GetxController {
       if (scrollController.position.pixels ==
           scrollController.position.maxScrollExtent)
         fetchSearchDisplayList(activeText!);
+      print('seatching');
     });
     super.onInit();
   }
