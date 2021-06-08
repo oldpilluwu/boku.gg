@@ -53,8 +53,8 @@ class BrowsePage extends StatelessWidget {
                         searchController
                             .fetchGenreDisplayList(e.returnGenreId());
                         Get.to(() => SearchResultPage(
-                              animeList: searchController.genreAnimeList,
-                              controller: ScrollController(),
+                              animeList: searchController.searchAnimeList,
+                              controller: searchController.scrollController,
                             ));
                       });
                 }).toList(),
