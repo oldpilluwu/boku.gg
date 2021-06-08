@@ -5,6 +5,7 @@ import 'package:boku_gg/models/anime_display_model.dart';
 
 import 'package:boku_gg/widgets/listed_anime.dart';
 import 'package:boku_gg/widgets/loading.dart';
+import 'package:boku_gg/widgets/navigation_bar.dart';
 import 'package:boku_gg/widgets/search_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,7 @@ class SearchResultPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white12,
       body: _buildContent(),
+        bottomNavigationBar: NagivationBar(index: 1)
     );
   }
 

@@ -4,9 +4,6 @@ import 'package:video_player/video_player.dart';
 class VideoPlayerOverlay extends StatelessWidget {
   final VideoPlayerController controller;
 
-  // FOR FUTURE SPEED EDIT OPTION
-  // static const allSpeeds = <double>[0.5, 1, 1.25 , 1.5, 2, 2.5];
-
   const VideoPlayerOverlay({
     required this.controller
   }) :
@@ -41,8 +38,8 @@ class VideoPlayerOverlay extends StatelessWidget {
               child: buildIndicator()),
 
           Positioned(
-            bottom: 0,
-            left: 10,
+            bottom: 1,
+            left: 22,
             child: Text(getPosition(),
                 style: TextStyle(
                   color: Color(0xffdedede),
@@ -60,7 +57,7 @@ class VideoPlayerOverlay extends StatelessWidget {
         child: VideoProgressIndicator(
           controller, allowScrubbing: true,
           colors: VideoProgressColors(
-              playedColor: Colors.blueGrey
+              playedColor: Colors.red.withOpacity(.6)
           ),));
   }
   Widget buildPlay() {
