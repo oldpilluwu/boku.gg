@@ -10,8 +10,7 @@ class AnimeDisplayPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: SafeArea(
+    return SafeArea(
         child: Column(
           children: [
             Expanded(
@@ -29,7 +28,7 @@ class AnimeDisplayPage extends StatelessWidget {
             })
           ],
         ),
-      ),
+
     );
   }
 }
