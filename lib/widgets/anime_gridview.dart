@@ -22,15 +22,14 @@ class AnimeGridView extends StatelessWidget {
         childAspectRatio: 0.8,
         children: animeDisplayType.value.animeDisplayList
             .map<Widget>((AnimeDisplay anime) {
-          return  AnimeThumbnail(
-                  imageLink: anime.image,
-                  id: anime.id,
-                  title: anime.title,
-                  onPressed: () {
-                    animeController.fetchSingleAnimeDetails(anime.id);
-                    Get.to(() => LoadingScreen());
-                  });
-
+          return AnimeThumbnail(
+              imageLink: anime.image,
+              id: anime.id,
+              title: anime.title,
+              onPressed: () {
+                animeController.fetchSingleAnimeDetails(anime.id);
+                Get.to(() => LoadingScreen());
+              });
         }).toList(),
       ),
     );

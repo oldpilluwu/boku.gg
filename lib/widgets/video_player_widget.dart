@@ -10,25 +10,21 @@ class VideoPlayerWidget extends StatelessWidget {
   }) : super();
 
   @override
-  Widget build(BuildContext context) =>
-      controller != null && controller.value.isInitialized
-          ? Container(alignment: Alignment.center, child: buildVideo())
-          : Container(
-          child: Center(child: CircularProgressIndicator(),)
-      );
+  Widget build(BuildContext context) => controller.value.isInitialized
+      ? Container(alignment: Alignment.center, child: buildVideo())
+      : Container(
+          child: Center(
+          child: CircularProgressIndicator(),
+        ));
 
-  Widget buildVideo() => Stack(
-      children: <Widget>[
+  Widget buildVideo() => Stack(children: <Widget>[
         buildVideoPlayer(),
         VideoPlayerOverlay(controller: controller),
-      ]
-  );
+      ]);
 
   Widget buildVideoPlayer() => Center(
-    child: AspectRatio(
-        aspectRatio: controller.value.aspectRatio,
-        child: VideoPlayer(controller)
-    ),
-  );
-
+        child: AspectRatio(
+            aspectRatio: controller.value.aspectRatio,
+            child: VideoPlayer(controller)),
+      );
 }

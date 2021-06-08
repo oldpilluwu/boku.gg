@@ -1,7 +1,6 @@
 import 'package:boku_gg/commons/color_palette.dart';
 import 'package:boku_gg/commons/controller.dart';
 import 'package:boku_gg/widgets/anime_display_view.dart';
-import 'package:boku_gg/widgets/anime_gridview.dart';
 import 'package:flutter/material.dart';
 
 class TabBarHomePage extends StatelessWidget {

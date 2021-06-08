@@ -15,4 +15,13 @@ class URLStrings {
   static String getAnimeEpisodeUrl(String id, int episode) {
     return getAnimeDetailsUrl + '/$id/$episode';
   }
+
+  static String getSearchUrl(String searchText, int page) {
+    String parsedSearchUrl = searchText.replaceAll(" ", "%20");
+    return hostWebsite + '/?search=$parsedSearchUrl&page=$page';
+  }
+
+  static String getGenreUrl(String genre) {
+    return hostWebsite + '/genre/$genre';
+  }
 }

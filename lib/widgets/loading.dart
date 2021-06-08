@@ -6,30 +6,27 @@ import 'package:get/get.dart';
 class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Obx(() {
-        if (animeController.isLoading.value)
-          return Expanded(
-            child: Container(
-              color: Colors.grey.shade900,
-              child: Center(
-                child: CircularProgressIndicator(),
-              ),
+    return Obx(() {
+      if (animeController.isLoading.value)
+        return Expanded(
+          child: Container(
+            color: Colors.grey.shade900,
+            child: Center(
+              child: CircularProgressIndicator(),
             ),
-          );
-        else {
-          return AnimePage(
-            imageLink: animeController.activeAnime!.value.image,
-            id: animeController.activeAnime!.value.id,
-            title: animeController.activeAnime!.value.title,
-            status: animeController.activeAnime!.value.status,
-            genreList: animeController.activeAnime!.value.genres,
-            totalEpisodes: animeController.activeAnime!.value.totalEpisodes,
-            summary: animeController.activeAnime!.value.summary,
-          );
-        }
-      }),
-    );
-    ;
+          ),
+        );
+      else {
+        return AnimePage(
+          imageLink: animeController.activeAnime!.value.image,
+          id: animeController.activeAnime!.value.id,
+          title: animeController.activeAnime!.value.title,
+          status: animeController.activeAnime!.value.status,
+          genreList: animeController.activeAnime!.value.genres,
+          totalEpisodes: animeController.activeAnime!.value.totalEpisodes,
+          summary: animeController.activeAnime!.value.summary,
+        );
+      }
+    });
   }
 }
