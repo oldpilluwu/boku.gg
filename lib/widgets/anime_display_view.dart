@@ -10,25 +10,23 @@ class AnimeDisplayPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: AnimeGridView(
-                animeDisplayType: animeTypeController,
-              ),
+    return SafeArea(
+      child: Column(
+        children: [
+          Expanded(
+            child: AnimeGridView(
+              animeDisplayType: animeTypeController,
             ),
-            Obx(() {
-              if (animeController.isLoading.value)
-                return Center(child: LinearProgressIndicator());
-              else
-                return Container(
-                  height: 0,
-                );
-            })
-          ],
-        ),
+          ),
+          Obx(() {
+            if (animeController.isLoading.value)
+              return Center(child: LinearProgressIndicator());
+            else
+              return Container(
+                height: 0,
+              );
+          })
+        ],
       ),
     );
   }
