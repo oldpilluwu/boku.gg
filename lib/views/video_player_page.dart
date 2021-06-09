@@ -59,7 +59,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xff282828),
+        backgroundColor: Colors.black,
         body: VideoPlayerWidget(controller: controller));
   }
 }

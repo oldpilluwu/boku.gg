@@ -1,8 +1,10 @@
 import 'package:boku_gg/commons/color_palette.dart';
 import 'package:boku_gg/commons/controller.dart';
 import 'package:boku_gg/commons/genre_list.dart';
+import 'package:boku_gg/controllers/search_controller.dart';
 import 'package:boku_gg/views/search_result.dart';
 import 'package:boku_gg/widgets/genre_button.dart';
+import 'package:boku_gg/widgets/navigation_bar.dart';
 import 'package:boku_gg/widgets/search_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +16,7 @@ class BrowsePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white12,
       body: _buildContent(),
+      bottomNavigationBar: NagivationBar(index: 1)
     );
   }
 
@@ -53,8 +56,8 @@ class BrowsePage extends StatelessWidget {
                         searchController
                             .fetchGenreDisplayList(e.returnGenreId());
                         Get.to(() => SearchResultPage(
-                              animeList: searchController.genreAnimeList,
-                              controller: ScrollController(),
+                              animeList: searchController.searchAnimeList,
+                              controller: searchController.scrollController,
                             ));
                       });
                 }).toList(),
