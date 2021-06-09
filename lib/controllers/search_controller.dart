@@ -8,30 +8,24 @@ class SearchController extends GetxController {
   var isLoading = true.obs;
 
   var searchAnimeList = <AnimeDisplay>[].obs;
-  // var genreAnimeList = <AnimeDisplay>[].obs;
-  bool isGenre = true;
-
   String? activeText;
   var searchText;
   int page = 1;
-
+  bool isGenre = true;
   ScrollController scrollController = ScrollController();
 
   @override
   void onInit() {
     scrollController.addListener(() {
       if (scrollController.position.pixels ==
-          scrollController.position.maxScrollExtent && !isGenre)
-        fetchSearchDisplayList(activeText!);
-      print('searching');
+              scrollController.position.maxScrollExtent &&
+          !isGenre) fetchSearchDisplayList(activeText!);
     });
     super.onInit();
   }
 
   void fetchSearchDisplayList(String searchText) async {
-    if (isGenre) {
-      searchAnimeList.clear();
-    }
+    if (isGenre) searchAnimeList.clear();
     isGenre = false;
     if (searchText != activeText) {
       page = 1;
@@ -53,9 +47,6 @@ class SearchController extends GetxController {
   }
 
   void fetchGenreDisplayList(String genre) async {
-    if (!isGenre) {
-      searchAnimeList.clear();
-    }
     isGenre = true;
     try {
       isLoading(true);

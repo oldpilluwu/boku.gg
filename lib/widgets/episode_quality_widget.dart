@@ -20,7 +20,7 @@ class EpisodeQuality extends StatelessWidget {
         print(link);
       },
       child: Container(
-        height: 70,
+        height: 60,
         // color: ColorPalette.secondaryColor,
         padding: EdgeInsets.all(15),
         child: Text(

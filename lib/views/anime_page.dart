@@ -129,29 +129,47 @@ class AnimePage extends StatelessWidget {
                                       showModalBottomSheet(
                                           context: context,
                                           builder: (context) {
-                                            return Obx(() {
-                                              if (animeController
-                                                  .episodeLoading.value)
-                                                return Center(
-                                                  child:
-                                                      CircularProgressIndicator(),
-                                                );
-                                              else
-                                                return ListView(
-                                                  children: <Widget>[
-                                                    ...animeController
-                                                        .episodeQuality!
-                                                        .map(
-                                                      (element) =>
-                                                          EpisodeQuality(
-                                                        quality:
-                                                            element.quality,
-                                                        link: element.link,
-                                                      ),
+                                            return Column(
+                                              children: [
+                                                Container(
+                                                  margin: EdgeInsets.all(10),
+                                                  child: Center(
+                                                    child: Text(
+                                                      'Episode ${index + 1}',
+                                                      style: TextStyle(
+                                                          fontSize: 24),
                                                     ),
-                                                  ],
-                                                );
-                                            });
+                                                  ),
+                                                ),
+                                                Divider(),
+                                                Obx(() {
+                                                  if (animeController
+                                                      .episodeLoading.value)
+                                                    return Center(
+                                                      child:
+                                                          CircularProgressIndicator(),
+                                                    );
+                                                  else
+                                                    return Expanded(
+                                                      child: ListView(
+                                                        children: <Widget>[
+                                                          ...animeController
+                                                              .episodeQuality!
+                                                              .map(
+                                                            (element) =>
+                                                                EpisodeQuality(
+                                                              quality: element
+                                                                  .quality,
+                                                              link:
+                                                                  element.link,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    );
+                                                }),
+                                              ],
+                                            );
                                           });
                                     },
                                     episodeNumber: index + 1,

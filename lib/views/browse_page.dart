@@ -1,7 +1,6 @@
 import 'package:boku_gg/commons/color_palette.dart';
 import 'package:boku_gg/commons/controller.dart';
 import 'package:boku_gg/commons/genre_list.dart';
-import 'package:boku_gg/controllers/search_controller.dart';
 import 'package:boku_gg/views/search_result.dart';
 import 'package:boku_gg/widgets/genre_button.dart';
 import 'package:boku_gg/widgets/navigation_bar.dart';
@@ -14,10 +13,9 @@ class BrowsePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white12,
-      body: _buildContent(),
-      bottomNavigationBar: NagivationBar(index: 1)
-    );
+        backgroundColor: Colors.white12,
+        body: _buildContent(),
+        bottomNavigationBar: NagivationBar(index: 1));
   }
 
   Widget _buildContent() {
