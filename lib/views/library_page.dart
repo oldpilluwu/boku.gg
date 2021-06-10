@@ -1,16 +1,15 @@
 import 'package:boku_gg/commons/color_palette.dart';
-import 'package:boku_gg/commons/controller.dart';
-import 'package:boku_gg/widgets/anime_display_view.dart';
+import 'package:boku_gg/widgets/listed_anime.dart';
 import 'package:boku_gg/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 
-class TabBarHomePage extends StatelessWidget {
+class LibraryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: NagivationBar(index: 0),
+      bottomNavigationBar: NagivationBar(index: 2),
       body: DefaultTabController(
-        length: 2,
+        length: 3,
         child: Scaffold(
             appBar: AppBar(
               automaticallyImplyLeading: false,
@@ -29,21 +28,27 @@ class TabBarHomePage extends StatelessWidget {
                 indicatorSize: TabBarIndicatorSize.label,
                 indicator: BoxDecoration(
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      topRight: Radius.circular(10)),
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20)),
                   color: ColorPalette.secondaryColor,
                 ),
                 tabs: [
                   Tab(
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text("Popular"),
+                      child: Text("Watching"),
                     ),
                   ),
                   Tab(
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text("Recent"),
+                      child: Text("Wishlist"),
+                    ),
+                  ),
+                  Tab(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text("Completed"),
                     ),
                   ),
                 ],
@@ -51,18 +56,35 @@ class TabBarHomePage extends StatelessWidget {
             ),
             body: TabBarView(
               children: [
+
+              Container(
+                color: ColorPalette.primaryColor,
+                child: ListView.builder(
+                // Need to fetch user's lists from Firebase
+
+                controller: ScrollController(),
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return Container(
+                    child: ListedAnime(
+                      title: "Anime",
+                      id: "anime",
+                      imageLink: "",
+                      onPressed: () { print("oogabooga");},
+                    ),
+                  );
+                },
+            ),
+              ),
+
                 Container(
                   color: ColorPalette.secondaryColor,
-                  child: AnimeDisplayPage(
-                    animeTypeController: animeController.popularAnime,
-                  ),
                 ),
+
                 Container(
                   color: ColorPalette.secondaryColor,
-                  child: AnimeDisplayPage(
-                    animeTypeController: animeController.recentAnime,
-                  ),
                 ),
+
               ],
             )),
       ),

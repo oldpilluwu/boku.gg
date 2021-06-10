@@ -52,6 +52,7 @@ class VideoPlayerOverlay extends StatelessWidget {
   }
 
   Widget buildIndicator() {
+
     return Container(
         height: 22,
         child: VideoProgressIndicator(
@@ -60,6 +61,7 @@ class VideoPlayerOverlay extends StatelessWidget {
               playedColor: Colors.red.withOpacity(.6)
           ),));
   }
+
   Widget buildPlay() {
     if (controller.value.isPlaying)
       return Container();
@@ -67,7 +69,9 @@ class VideoPlayerOverlay extends StatelessWidget {
     else return Container(
       alignment: Alignment.center,
       color: Colors.black26,
-      child: Icon(Icons.play_arrow, color: Colors.white, size: 80.0,),
+      child: Icon(Icons.play_arrow,
+      color: Colors.white, size: 80.0,),
     );
+
   }
 }
