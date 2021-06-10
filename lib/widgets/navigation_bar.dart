@@ -1,4 +1,5 @@
 import 'package:boku_gg/views/browse_page.dart';
+import 'package:boku_gg/views/library_page.dart';
 import 'package:boku_gg/views/tab_bar_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,6 +19,10 @@ class NagivationBar extends BottomNavigationBar {
 
           else if(index == 1) {
             Get.to(() => BrowsePage());
+          }
+
+          else if(index == 2) {
+            Get.to(() => LibraryPage());
           }
         },
         unselectedItemColor: unselectedColor,

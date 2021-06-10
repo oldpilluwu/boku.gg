@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class ListedAnime extends GestureDetector {
   ListedAnime({
+    Color bgColor = ColorPalette.secondaryColorDark,
     required String title,
     required String id,
     required String imageLink,
@@ -13,8 +14,8 @@ class ListedAnime extends GestureDetector {
         super  (
           onTap: onPressed,
           child: Container(
-            color: ColorPalette.secondaryColor.withOpacity(.2),
-            margin: EdgeInsets.only(bottom: 5),
+            color: bgColor,
+            margin: EdgeInsets.only(bottom: 3),
             child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
             children: [
