@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "280787342246",
+    "project_id": "boku-gg",
+    "storage_bucket": "boku-gg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280787342246:android:bf8c2c9074dd3ea890f567",
+        "android_client_info": {
+          "package_name": "com.no_pico.boku_gg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "280787342246-pfn4insqgj77rd757ptoinj4jf1duou2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.no_pico.boku_gg",
+            "certificate_hash": "ee211931d3dfbfeba5e9c323b5db1a4be75fca09"
+          }
+        },
+        {
+          "client_id": "280787342246-3sa01709lk6rjm2sqbgbm5iu8brb2u3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjbWID7w_RoBJrNtal8JvnSTNfPG12Y24"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "280787342246-3sa01709lk6rjm2sqbgbm5iu8brb2u3q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

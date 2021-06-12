@@ -1,5 +1,6 @@
 import 'package:boku_gg/commons/color_palette.dart';
 import 'package:boku_gg/widgets/listed_anime.dart';
+import 'package:boku_gg/widgets/logout_icon.dart';
 import 'package:boku_gg/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,9 @@ class LibraryPage extends StatelessWidget {
         length: 3,
         child: Scaffold(
             appBar: AppBar(
+              actions: [
+                LogoutIconButton(),
+              ],
               automaticallyImplyLeading: false,
               elevation: 0,
               title: Center(
@@ -56,35 +60,33 @@ class LibraryPage extends StatelessWidget {
             ),
             body: TabBarView(
               children: [
+                Container(
+                  color: ColorPalette.primaryColor,
+                  child: ListView.builder(
+                    // Need to fetch user's lists from Firebase
 
-              Container(
-                color: ColorPalette.primaryColor,
-                child: ListView.builder(
-                // Need to fetch user's lists from Firebase
-
-                controller: ScrollController(),
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return Container(
-                    child: ListedAnime(
-                      title: "Anime",
-                      id: "anime",
-                      imageLink: "",
-                      onPressed: () { print("oogabooga");},
-                    ),
-                  );
-                },
-            ),
-              ),
-
+                    controller: ScrollController(),
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        child: ListedAnime(
+                          title: "Anime",
+                          id: "anime",
+                          imageLink: "",
+                          onPressed: () {
+                            print("oogabooga");
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ),
                 Container(
                   color: ColorPalette.secondaryColor,
                 ),
-
                 Container(
                   color: ColorPalette.secondaryColor,
                 ),
-
               ],
             )),
       ),

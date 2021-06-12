@@ -25,7 +25,10 @@ class SearchController extends GetxController {
   }
 
   void fetchSearchDisplayList(String searchText) async {
-    if (isGenre) searchAnimeList.clear();
+    if (isGenre) {
+      searchAnimeList.clear();
+      activeText = "";
+    }
     isGenre = false;
     if (searchText != activeText) {
       page = 1;

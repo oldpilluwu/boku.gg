@@ -1,18 +1,15 @@
 import 'package:boku_gg/commons/color_palette.dart';
 import 'package:boku_gg/commons/controller.dart';
-import 'package:boku_gg/commons/genre_list.dart';
+
 import 'package:boku_gg/views/reset_password_page.dart';
-import 'package:boku_gg/views/search_result.dart';
-import 'package:boku_gg/views/sign_up_page.dart';
-import 'package:boku_gg/widgets/genre_button.dart';
-import 'package:boku_gg/widgets/navigation_bar.dart';
-import 'package:boku_gg/widgets/search_bar.dart';
+
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PasswordChangeRequestPage extends StatelessWidget {
+  final TextEditingController emailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,57 +28,47 @@ class PasswordChangeRequestPage extends StatelessWidget {
         children: [
           Expanded(
               child: Container(
-                padding: EdgeInsets.fromLTRB(30, 20, 30, 0),
-                alignment: Alignment.center,
-                child: Image.asset("assets/iconTransparent.png"),
-              )
-          ),
+            padding: EdgeInsets.fromLTRB(30, 20, 30, 0),
+            alignment: Alignment.center,
+            child: Image.asset("assets/iconTransparent.png"),
+          )),
           Container(
-              alignment: Alignment.center,
-              margin: EdgeInsets.fromLTRB(30, 10, 30, 10),
-              child: Text(
-                  "Forgot your password?",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: ColorPalette.textColor,
-                  ),
-                ),
+            alignment: Alignment.center,
+            margin: EdgeInsets.fromLTRB(30, 10, 30, 10),
+            child: Text(
+              "Forgot your password?",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: ColorPalette.textColor,
+              ),
+            ),
           ),
-
 
           SizedBox(height: 30),
           Container(
-              alignment: Alignment.center,
-              margin: EdgeInsets.fromLTRB(30, 10, 30, 10),
-              child: GestureDetector(
-                onTap: () {
-                  Get.to(() => ResetPasswordPage());
-                },
-                child: Text(
-                  "Enter you mail and we will send you a link to reset password",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: ColorPalette.textColor,
-                  ),
-                ),
-              )
+            alignment: Alignment.center,
+            margin: EdgeInsets.fromLTRB(30, 10, 30, 10),
+            child: Text(
+              "Enter you mail and we will send you a link to reset password",
+              style: TextStyle(
+                fontSize: 16,
+                color: ColorPalette.textColor,
+              ),
+            ),
           ),
-
 
           SizedBox(height: 20),
           Container(
             padding: EdgeInsets.only(left: 10, right: 10),
             margin: EdgeInsets.fromLTRB(30, 0, 30, 10),
-            decoration:
-            BoxDecoration(
+            decoration: BoxDecoration(
               // color: Colors.white,
               color: Color(0xffcdcdcd),
               borderRadius: BorderRadius.circular(5),
             ),
-
             child: TextField(
-              onSubmitted: (text) {},
+              controller: emailController,
               style: TextStyle(
                 color: ColorPalette.primaryColor,
               ),
@@ -101,24 +88,23 @@ class PasswordChangeRequestPage extends StatelessWidget {
           //   mainAxisAlignment: MainAxisAlignment.end,
           //   children: [
 
-
           SizedBox(height: 40),
 
           Container(
             alignment: Alignment.center,
             child: ElevatedButton(
               onPressed: () {
-                Get.to(() => ResetPasswordPage());
+                authController.resetPassword(emailController.text);
               },
-              child: Text("Send Request", style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold
-              ),),
+              child: Text(
+                "Send Request",
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              ),
               style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.fromLTRB(35, 12, 35, 12),
                   primary: Color(0xff88E079),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0)))
-              ),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)))),
             ),
           ),
 
@@ -128,7 +114,7 @@ class PasswordChangeRequestPage extends StatelessWidget {
               margin: EdgeInsets.fromLTRB(30, 10, 30, 10),
               child: GestureDetector(
                 onTap: () {
-                  Get.to(() => ResetPasswordPage());
+                  Get.back();
                 },
                 child: Text(
                   "< Back to Login",
@@ -139,11 +125,9 @@ class PasswordChangeRequestPage extends StatelessWidget {
                     color: ColorPalette.textColor,
                   ),
                 ),
-              )
-          ),
+              )),
 
           SizedBox(height: 120),
-
         ],
       ),
     );
