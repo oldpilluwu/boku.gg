@@ -18,7 +18,7 @@ class TabBarHomePage extends StatelessWidget {
               actions: [
                 LogoutIconButton(),
               ],
-              automaticallyImplyLeading: false,
+              // automaticallyImplyLeading: false,
               elevation: 0,
               title: Center(
                 child: Text(

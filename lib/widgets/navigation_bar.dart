@@ -1,6 +1,6 @@
-import 'package:boku_gg/views/browse_page.dart';
-import 'package:boku_gg/views/library_page.dart';
-import 'package:boku_gg/views/tab_bar_home_page.dart';
+import 'package:boku_gg/views/search/browse_page.dart';
+import 'package:boku_gg/views/library/library_page.dart';
+import 'package:boku_gg/views/home/tab_bar_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
