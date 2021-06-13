@@ -1,6 +1,6 @@
 import 'package:boku_gg/commons/color_palette.dart';
 import 'package:boku_gg/commons/controller.dart';
-import 'package:boku_gg/views/search_result.dart';
+import 'package:boku_gg/views/search/search_result.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

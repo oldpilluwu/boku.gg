@@ -1,8 +1,8 @@
 import 'package:boku_gg/commons/color_palette.dart';
 import 'package:boku_gg/commons/controller.dart';
 import 'package:boku_gg/commons/genre_list.dart';
-import 'package:boku_gg/views/search_result.dart';
-import 'package:boku_gg/views/sign_up_page.dart';
+import 'package:boku_gg/views/search/search_result.dart';
+import 'package:boku_gg/views/authentication/sign_up_page.dart';
 import 'package:boku_gg/widgets/genre_button.dart';
 import 'package:boku_gg/widgets/navigation_bar.dart';
 import 'package:boku_gg/widgets/search_bar.dart';
