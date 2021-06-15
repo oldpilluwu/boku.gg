@@ -263,7 +263,8 @@ class AnimePage extends StatelessWidget {
                                                     child: Text(
                                                       'Episode ${index + 1}',
                                                       style: TextStyle(
-                                                          fontSize: 24),
+                                                          fontSize: 24,
+                                                      color: ColorPalette.textColor),
                                                     ),
                                                   ),
                                                 ),
