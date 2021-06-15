@@ -199,6 +199,7 @@ class AnimePage extends StatelessWidget {
                                 flex: 4,
                                 child: Container(
                                     child: FloatingActionButton(
+                                      heroTag: "add",
                                       child: Icon(Icons.add, color: ColorPalette.textColor,),
                                       backgroundColor: ColorPalette.secondaryColorDark.withOpacity(.75),
                                       onPressed: () {
@@ -212,6 +213,7 @@ class AnimePage extends StatelessWidget {
                                 flex: 4,
                                 child: Container(
                                   child: FloatingActionButton(
+                                    heroTag: "check",
                                     child: Icon(Icons.check, color: ColorPalette.textColor,),
                                     backgroundColor: ColorPalette.secondaryColorDark.withOpacity(.75),
                                     onPressed: () {
@@ -274,22 +276,24 @@ class AnimePage extends StatelessWidget {
                                                           CircularProgressIndicator(),
                                                     );
                                                   else
-                                                    return ListView(
-                                                      shrinkWrap: true,
-                                                        children: <Widget>[
-                                                          ...animeController
-                                                              .episodeQuality!
-                                                              .map(
-                                                            (element) =>
-                                                                EpisodeQuality(
-                                                              quality: element
-                                                                  .quality,
-                                                              link:
-                                                                  element.link,
+                                                    return Expanded(
+                                                      child: ListView(
+                                                        shrinkWrap: true,
+                                                          children: <Widget>[
+                                                            ...animeController
+                                                                .episodeQuality!
+                                                                .map(
+                                                              (element) =>
+                                                                  EpisodeQuality(
+                                                                quality: element
+                                                                    .quality,
+                                                                link:
+                                                                    element.link,
+                                                              ),
                                                             ),
-                                                          ),
-                                                        ],
+                                                          ],
 
+                                                      ),
                                                     );
                                                 }),
                                               ],
