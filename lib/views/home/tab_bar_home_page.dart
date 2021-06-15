@@ -15,17 +15,17 @@ class TabBarHomePage extends StatelessWidget {
         length: 2,
         child: Scaffold(
             appBar: AppBar(
+              centerTitle: true,
               actions: [
                 LogoutIconButton(),
               ],
-              // automaticallyImplyLeading: false,
+              automaticallyImplyLeading: false,
               elevation: 0,
-              title: Center(
-                child: Text(
+              title: Text(
                   "boku.gg",
                   textAlign: TextAlign.center,
                   style: TextStyle(color: ColorPalette.textColor),
-                ),
+                // ),
               ),
               backgroundColor: ColorPalette.primaryColor,
               bottom: TabBar(

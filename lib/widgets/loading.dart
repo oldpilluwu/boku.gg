@@ -8,13 +8,11 @@ class LoadingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       if (animeController.isLoading.value)
-        return Expanded(
-          child: Container(
+        return Container(
             color: Colors.grey.shade900,
             child: Center(
               child: CircularProgressIndicator(),
             ),
-          ),
         );
       else {
         return AnimePage(

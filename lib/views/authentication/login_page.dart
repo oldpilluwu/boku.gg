@@ -43,8 +43,8 @@ class LoginPage extends StatelessWidget {
             SizedBox(height: 10),
 
             CustomTextField(controller: emailController, hintText: "Email"),
-            CustomTextField(controller: passwordController, hintText: "Password", isPassword: true),
 
+            CustomTextField(controller: passwordController, hintText: "Password", isPassword: true),
 
             PressableText(
               alignment: Alignment.bottomRight,
@@ -59,7 +59,7 @@ class LoginPage extends StatelessWidget {
 
             SubmitButton(
                 text: "Login",
-                onPressed: (){
+                onPressed: () {
                   authController.login(
                   emailController.text, passwordController.text);
                 },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 const List<String> genreList = [
 "Action",
@@ -92,7 +93,6 @@ GenreAndColor(text: "Thriller", color: Color(0xFFbB5454)),
 GenreAndColor(text: "Vampire", color: Color(0xFFDB6464)),
 GenreAndColor(text: "Yaoi", color:  Color(0xFFffaabb)),
 GenreAndColor(text: "Yuri", color: Color(0xFFA7D9AB))
-
 ];
 
 class GenreAndColor {
@@ -109,3 +109,5 @@ class GenreAndColor {
     return parsedGenreName;
   }
 }
+
+
