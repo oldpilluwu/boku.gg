@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 List<AnimeDisplay> animeDisplayFromJson(String str) => List<AnimeDisplay>.from(
     json.decode(str).map((x) => AnimeDisplay.fromJson(x)));
 
@@ -25,6 +27,13 @@ class AnimeDisplay {
         id: json["id"],
         title: json["title"],
         image: json["image"],
+      );
+
+  factory AnimeDisplay.fromDocumentSnapshot(DocumentSnapshot doc) =>
+      AnimeDisplay(
+        id: doc.id,
+        title: doc['title'],
+        image: doc["image"],
       );
 
   Map<String, dynamic> toJson() => {

@@ -1,9 +1,7 @@
 import 'package:boku_gg/commons/color_palette.dart';
 import 'package:boku_gg/commons/controller.dart';
-import 'package:boku_gg/views/video_player/video_player_page.dart';
 import 'package:boku_gg/widgets/episode_button.dart';
 import 'package:boku_gg/widgets/episode_quality_widget.dart';
-import 'package:boku_gg/widgets/genre_button.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
@@ -43,20 +41,17 @@ class AnimePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
-
-
                 Stack(
                   children: [
-                        Container(
-                          height: 35,
-                          width: 35,
-                          child: FloatingActionButton(
-                            child: Icon(Icons.check),
-                            onPressed: () {},
-                            backgroundColor: Colors.pink,
-                          ),
-                        ),
+                    Container(
+                      height: 35,
+                      width: 35,
+                      child: FloatingActionButton(
+                        child: Icon(Icons.check),
+                        onPressed: () {},
+                        backgroundColor: Colors.pink,
+                      ),
+                    ),
                     // Positioned(
                     //   right: 8,
                     //   top: 12,
@@ -71,77 +66,70 @@ class AnimePage extends StatelessWidget {
                     //   ),
                     // ),
 
-
                     Row(
-                    children: [
-                      Expanded(
-                        flex: 4,
-                        child: Container(
-                              color: Colors.white12,
-                              child: CachedNetworkImage(
-                                imageUrl: imageLink,
-                                fit: BoxFit.cover,
-                                placeholder: (context, url) =>
-                                    Center(child: CircularProgressIndicator()),
-                                errorWidget: (context, url, error) => Icon(Icons.error),
-                              ),
-                              height: 200,
-                              width: 160,
-                              ),
-                      ),
-
-                      Expanded(
-                        flex: 6,
-                        child: Text(
-                                    title,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 30,
-                                      color: textColor,
-                                    ),
-                                  ),
-                        ),
-                         ],
+                      children: [
+                        Expanded(
+                          flex: 4,
+                          child: Container(
+                            color: Colors.white12,
+                            child: CachedNetworkImage(
+                              imageUrl: imageLink,
+                              fit: BoxFit.cover,
+                              placeholder: (context, url) =>
+                                  Center(child: CircularProgressIndicator()),
+                              errorWidget: (context, url, error) =>
+                                  Icon(Icons.error),
+                            ),
+                            height: 200,
+                            width: 160,
                           ),
-                    ],
-                  ),
+                        ),
+                        Expanded(
+                          flex: 6,
+                          child: Text(
+                            title,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 30,
+                              color: textColor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
 
-
-                  Expanded(
-                    child: ListView(
+                Expanded(
+                  child: ListView(
                     shrinkWrap: true,
                     children: [
-
-                    Container(
-                      margin: EdgeInsets.fromLTRB(8, 4, 8, 0),
-                      height: 40,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        controller: ScrollController(),
-                        shrinkWrap: true,
-                        children: genreList.map((e) {
-                          return Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 8, 8, 5),
-                            child: Container(
-                              padding: EdgeInsets.fromLTRB(8, 6, 8, 6),
-                              child: Text(e,
-                              style: TextStyle(
-                                fontSize: 13,
-                                color: ColorPalette.primaryColor,
-                              ),),
-                              decoration: BoxDecoration(
-                                color: ColorPalette.secondaryColor,
-                                borderRadius: BorderRadius.circular(20)
-                              ),
-                            ),
-
-
-
-
-                          );
-                        }).toList()
+                      Container(
+                        margin: EdgeInsets.fromLTRB(8, 4, 8, 0),
+                        height: 40,
+                        child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            controller: ScrollController(),
+                            shrinkWrap: true,
+                            children: genreList.map((e) {
+                              return Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 8, 8, 5),
+                                child: Container(
+                                  padding: EdgeInsets.fromLTRB(8, 6, 8, 6),
+                                  child: Text(
+                                    e,
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      color: ColorPalette.primaryColor,
+                                    ),
+                                  ),
+                                  decoration: BoxDecoration(
+                                      color: ColorPalette.secondaryColor,
+                                      borderRadius: BorderRadius.circular(20)),
+                                ),
+                              );
+                            }).toList()),
                       ),
-                    ),
 
                       Padding(
                         padding: EdgeInsets.only(left: 8.0, top: 10),
@@ -171,60 +159,128 @@ class AnimePage extends StatelessWidget {
                       ),
 
                       //
-                        Container(
-                          margin: EdgeInsets.all(8),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                flex: 16,
-                                child: Container(
-                                  padding: EdgeInsets.fromLTRB(2, 8, 2, 8),
-                                    decoration: BoxDecoration(
-                                      color: statusBarColor,
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Text(
-                                    "Status: " + status,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: statusTextColor,
-                                    ),
+                      Container(
+                        margin: EdgeInsets.all(8),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 16,
+                              child: Container(
+                                padding: EdgeInsets.fromLTRB(2, 8, 2, 8),
+                                decoration: BoxDecoration(
+                                  color: statusBarColor,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Text(
+                                  "Status: " + status,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: statusTextColor,
                                   ),
+                                ),
                                 // ),
-                      ),
                               ),
-                              Expanded(flex: 4,child: Container()),
-                              Expanded(
-                                flex: 4,
-                                child: Container(
-                                    child: FloatingActionButton(
-                                      heroTag: "add",
-                                      child: Icon(Icons.add, color: ColorPalette.textColor,),
-                                      backgroundColor: ColorPalette.secondaryColorDark.withOpacity(.75),
-                                      onPressed: () {
-                                        //DO YOUR SHIT
+                            ),
+                            Expanded(flex: 4, child: Container()),
+                            Expanded(
+                              flex: 4,
+                              child: Container(
+                                child: FloatingActionButton(
+                                  heroTag: "add",
+                                  child: Icon(
+                                    Icons.add,
+                                    color: ColorPalette.textColor,
+                                  ),
+                                  backgroundColor: ColorPalette
+                                      .secondaryColorDark
+                                      .withOpacity(.75),
+                                  onPressed: () {
+                                    showModalBottomSheet(
+                                      context: context,
+                                      builder: (context) {
+                                        return Column(
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
+                                              child: ElevatedButton(
+                                                onPressed: () {
+                                                  libraryController.addToList(
+                                                      authController.user!.uid,
+                                                      'current',
+                                                      id,
+                                                      title,
+                                                      imageLink);
+                                                },
+                                                child: Container(
+                                                    width:
+                                                        double.infinity * 0.8,
+                                                    child: Text(
+                                                        'Currently Watching')),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
+                                              child: ElevatedButton(
+                                                onPressed: () {
+                                                  libraryController.addToList(
+                                                      authController.user!.uid,
+                                                      'completed',
+                                                      id,
+                                                      title,
+                                                      imageLink);
+                                                },
+                                                child: Container(
+                                                    width:
+                                                        double.infinity * 0.8,
+                                                    child: Text('Completed')),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
+                                              child: ElevatedButton(
+                                                onPressed: () {
+                                                  libraryController.addToList(
+                                                      authController.user!.uid,
+                                                      'watchlist',
+                                                      id,
+                                                      title,
+                                                      imageLink);
+                                                },
+                                                child: Container(
+                                                    width:
+                                                        double.infinity * 0.8,
+                                                    child: Text('Watch List')),
+                                              ),
+                                            ),
+                                          ],
+                                        );
                                       },
-                                    ),
-                                  ),
-                                ),
-                              Expanded(flex: 1,child: Container()),
-                              Expanded(
-                                flex: 4,
-                                child: Container(
-                                  child: FloatingActionButton(
-                                    heroTag: "check",
-                                    child: Icon(Icons.check, color: ColorPalette.textColor,),
-                                    backgroundColor: ColorPalette.secondaryColorDark.withOpacity(.75),
-                                    onPressed: () {
-                                      //DO YOUR SHIT
-                                    },
-                                  ),
+                                    );
+                                  },
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                            Expanded(flex: 1, child: Container()),
+                            // Expanded(
+                            //   flex: 4,
+                            //   child: Container(
+                            //     child: FloatingActionButton(
+                            //       heroTag: "check",
+                            //       child: Icon(Icons.check, color: ColorPalette.textColor,),
+                            //       backgroundColor: ColorPalette.secondaryColorDark.withOpacity(.75),
+                            //       onPressed: () {
+                            //         //DO YOUR SHIT
+                            //       },
+                            //     ),
+                            //   ),
+                            // ),
+                          ],
                         ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
@@ -264,7 +320,8 @@ class AnimePage extends StatelessWidget {
                                                       'Episode ${index + 1}',
                                                       style: TextStyle(
                                                           fontSize: 24,
-                                                      color: ColorPalette.textColor),
+                                                          color: ColorPalette
+                                                              .textColor),
                                                     ),
                                                   ),
                                                 ),
@@ -280,20 +337,19 @@ class AnimePage extends StatelessWidget {
                                                     return Expanded(
                                                       child: ListView(
                                                         shrinkWrap: true,
-                                                          children: <Widget>[
-                                                            ...animeController
-                                                                .episodeQuality!
-                                                                .map(
-                                                              (element) =>
-                                                                  EpisodeQuality(
-                                                                quality: element
-                                                                    .quality,
-                                                                link:
-                                                                    element.link,
-                                                              ),
+                                                        children: <Widget>[
+                                                          ...animeController
+                                                              .episodeQuality!
+                                                              .map(
+                                                            (element) =>
+                                                                EpisodeQuality(
+                                                              quality: element
+                                                                  .quality,
+                                                              link:
+                                                                  element.link,
                                                             ),
-                                                          ],
-
+                                                          ),
+                                                        ],
                                                       ),
                                                     );
                                                 }),
