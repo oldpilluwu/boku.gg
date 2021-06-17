@@ -1,6 +1,7 @@
 
 import 'dart:ffi';
 
+import 'package:boku_gg/commons/color_palette.dart';
 import 'package:flutter/material.dart';
 
 class SubmitButton extends Container {
@@ -18,7 +19,7 @@ class SubmitButton extends Container {
             ),
             style: ElevatedButton.styleFrom(
             padding: EdgeInsets.fromLTRB(45, 12, 45, 12),
-            primary: Color(0xff88E079),
+            primary: ColorPalette.green,
             shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(10.0)))),
             ),

@@ -13,17 +13,18 @@ class LibraryPage extends StatelessWidget {
         length: 3,
         child: Scaffold(
             appBar: AppBar(
+              centerTitle: true,
+              automaticallyImplyLeading: false,
               actions: [
                 LogoutIconButton(),
               ],
-              automaticallyImplyLeading: false,
+              // automaticallyImplyLeading: false,
               elevation: 0,
-              title: Center(
-                child: Text(
+              title: Text(
                   "boku.gg",
                   textAlign: TextAlign.center,
                   style: TextStyle(color: ColorPalette.textColor),
-                ),
+                // ),
               ),
               backgroundColor: ColorPalette.primaryColor,
               bottom: TabBar(
