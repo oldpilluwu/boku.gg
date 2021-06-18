@@ -1,5 +1,6 @@
 import 'package:boku_gg/commons/color_palette.dart';
-import 'package:boku_gg/widgets/listed_anime.dart';
+import 'package:boku_gg/commons/controller.dart';
+import 'package:boku_gg/widgets/library_list.dart';
 import 'package:boku_gg/widgets/logout_icon.dart';
 import 'package:boku_gg/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -8,10 +9,10 @@ class LibraryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: NagivationBar(index: 2),
-      body: DefaultTabController(
-        length: 3,
-        child: Scaffold(
+        bottomNavigationBar: NagivationBar(index: 2),
+        body: DefaultTabController(
+          length: 3,
+          child: Scaffold(
             appBar: AppBar(
               centerTitle: true,
               automaticallyImplyLeading: false,
@@ -21,9 +22,9 @@ class LibraryPage extends StatelessWidget {
               // automaticallyImplyLeading: false,
               elevation: 0,
               title: Text(
-                  "boku.gg",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: ColorPalette.textColor),
+                "boku.gg",
+                textAlign: TextAlign.center,
+                style: TextStyle(color: ColorPalette.textColor),
                 // ),
               ),
               backgroundColor: ColorPalette.primaryColor,
@@ -61,36 +62,12 @@ class LibraryPage extends StatelessWidget {
             ),
             body: TabBarView(
               children: [
-                Container(
-                  color: ColorPalette.primaryColor,
-                  child: ListView.builder(
-                    // Need to fetch user's lists from Firebase
-
-                    controller: ScrollController(),
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        child: ListedAnime(
-                          title: "Anime",
-                          id: "anime",
-                          imageLink: "",
-                          onPressed: () {
-                            print("oogabooga");
-                          },
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                Container(
-                  color: ColorPalette.secondaryColor,
-                ),
-                Container(
-                  color: ColorPalette.secondaryColor,
-                ),
+                LibraryListView(list: libraryController.currentWatching),
+                LibraryListView(list: libraryController.watchList),
+                LibraryListView(list: libraryController.completedWatching),
               ],
-            )),
-      ),
-    );
+            ),
+          ),
+        ));
   }
 }

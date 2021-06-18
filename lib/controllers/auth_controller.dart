@@ -1,3 +1,4 @@
+import 'package:boku_gg/commons/controller.dart';
 import 'package:boku_gg/views/placeholder_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
@@ -18,6 +19,7 @@ class AuthController extends GetxController {
     try {
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
+      //  libraryController.createNewLibrary(_firebaseUser.value!.uid);
       Get.back();
     } catch (err) {
       Get.snackbar(
@@ -43,6 +45,7 @@ class AuthController extends GetxController {
   void signOut() async {
     try {
       await _auth.signOut();
+      libraryController.clearList();
       Get.offAll(PlaceHolderPage());
     } catch (err) {
       Get.snackbar(

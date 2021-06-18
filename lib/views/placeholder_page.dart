@@ -8,6 +8,9 @@ class PlaceHolderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
+      if (authController.user != null) {
+        libraryController.getUserLibrary(authController.user!.uid);
+      }
       return (authController.user != null) ? TabBarHomePage() : LoginPage();
     });
 

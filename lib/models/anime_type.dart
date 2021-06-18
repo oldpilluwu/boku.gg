@@ -4,13 +4,12 @@ import 'package:flutter/material.dart';
 class AnimeType {
   var animeDisplayList;
   var page;
-  ScrollController? scrollController;
+  ScrollController scrollController = ScrollController();
   String? url;
 
   AnimeType(String _url) {
     animeDisplayList = <AnimeDisplay>[];
     page = 1;
-    scrollController = ScrollController();
     url = _url;
   }
 }

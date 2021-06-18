@@ -33,16 +33,16 @@ class AnimeController extends GetxController {
 
     super.onInit();
 
-    popularAnime.value.scrollController!.addListener(() {
-      if (popularAnime.value.scrollController!.position.pixels ==
-          popularAnime.value.scrollController!.position.maxScrollExtent) {
+    popularAnime.value.scrollController.addListener(() {
+      if (popularAnime.value.scrollController.position.pixels ==
+          popularAnime.value.scrollController.position.maxScrollExtent) {
         print('Scrolling');
         fetchAnimeDisplayList(popularAnime);
       }
     });
-    recentAnime.value.scrollController!.addListener(() {
-      if (recentAnime.value.scrollController!.position.pixels ==
-          recentAnime.value.scrollController!.position.maxScrollExtent) {
+    recentAnime.value.scrollController.addListener(() {
+      if (recentAnime.value.scrollController.position.pixels ==
+          recentAnime.value.scrollController.position.maxScrollExtent) {
         fetchAnimeDisplayList(recentAnime);
       }
     });
@@ -143,8 +143,6 @@ class AnimeController extends GetxController {
 
   @override
   void onClose() {
-    popularAnime.value.scrollController!.dispose();
-    recentAnime.value.scrollController!.dispose();
     super.onClose();
   }
 }
