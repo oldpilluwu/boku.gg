@@ -15,26 +15,28 @@ class LibraryListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: ColorPalette.primaryColor,
-      child: ListView.builder(
-        // Need to fetch user's lists from Firebase
+      child: Obx(() {
+        return ListView.builder(
+          // Need to fetch user's lists from Firebase
 
-        controller: ScrollController(),
-        itemCount: list.length,
-        itemBuilder: (context, index) {
-          return Container(
-            child: ListedAnime(
-              title: list[index].title,
-              id: list[index].id,
-              imageLink: list[index].image,
-              onPressed: () {
-                print(list[index].id);
-                animeController.fetchSingleAnimeDetails(list[index].id);
-                Get.to(() => LoadingScreen());
-              },
-            ),
-          );
-        },
-      ),
+          controller: ScrollController(),
+          itemCount: list.length,
+          itemBuilder: (context, index) {
+            return Container(
+              child: ListedAnime(
+                title: list[index].title,
+                id: list[index].id,
+                imageLink: list[index].image,
+                onPressed: () {
+                  print(list[index].id);
+                  animeController.fetchSingleAnimeDetails(list[index].id);
+                  Get.to(() => LoadingScreen());
+                },
+              ),
+            );
+          },
+        );
+      }),
     );
   }
 }

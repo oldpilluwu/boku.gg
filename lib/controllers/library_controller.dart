@@ -50,14 +50,13 @@ class LibraryController extends GetxController {
     if (listName == 'watchlist' && !isNotPresentIn('watchlist', id)) return;
     if (listName == 'completed' && !isNotPresentIn('current', id)) return;
 
-    isLoading(true);
     try {
-      if (isLoading.value)
-        await libraryCollection.doc(uid).collection(listName).add({
-          "id": id,
-          "title": title,
-          "image": image,
-        });
+      isLoading(true);
+      await libraryCollection.doc(uid).collection(listName).add({
+        "id": id,
+        "title": title,
+        "image": image,
+      });
     } catch (e) {} finally {
       isLoading(false);
     }
