@@ -206,6 +206,7 @@ class AnimePage extends StatelessWidget {
                                                   const EdgeInsets.all(10.0),
                                               child: ElevatedButton(
                                                 onPressed: () async {
+                                                  if(!libraryController.isNotPresentIn('current', id)) return;
                                                   await libraryController
                                                       .removeFromAllList(
                                                           authController
@@ -232,6 +233,7 @@ class AnimePage extends StatelessWidget {
                                                   const EdgeInsets.all(10.0),
                                               child: ElevatedButton(
                                                 onPressed: () async {
+                                                  if(!libraryController.isNotPresentIn('completed', id)) return;
                                                   await libraryController
                                                       .removeFromAllList(
                                                           authController
@@ -257,11 +259,13 @@ class AnimePage extends StatelessWidget {
                                                   const EdgeInsets.all(10.0),
                                               child: ElevatedButton(
                                                 onPressed: () async {
+                                                  if(!libraryController.isNotPresentIn('watchlist', id)) return;
                                                   await libraryController
                                                       .removeFromAllList(
                                                           authController
                                                               .user!.uid,
-                                                          id);
+                                                          id)
+                                                  ;
                                                   await libraryController
                                                       .addToList(
                                                           authController

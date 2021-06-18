@@ -78,23 +78,32 @@ class LibraryController extends GetxController {
       query.docs.forEach((element) {
         retVal.add(AnimeDisplay.fromDocumentSnapshot(element));
       });
-      print(retVal);
       return retVal;
     });
   }
 
   bool isNotPresentIn(String listName, String id) {
-    print(id);
+    List<AnimeDisplay> list = [];
     switch (listName) {
       case 'current':
-        return currentWatching.where((anime) => anime.id == id).isEmpty;
+        // return currentWatching.where((anime) => anime.id == id).isEmpty;
+        list.addAll(currentWatching);
+        break;
       case 'completed':
-        return completedWatching.where((anime) => anime.id == id).isEmpty;
+        // return completedWatching.where((anime) => anime.id == id).isEmpty;
+        list.addAll(completedWatching);
+        break;
       case 'watchlist':
-        return watchList.where((anime) => anime.id == id).isEmpty;
+        // return watchList.where((anime) => anime.id == id).isEmpty;
+        list.addAll(watchList);
+        break;
       default:
-        return false;
+        break;
     }
+
+    bool res = list.where((element) => element.id == id).isEmpty;
+    print("the item is not in the list:" + res.toString());
+    return res;
   }
 
   Future<void> removeFromList(String uid, String listName, String id) async {
