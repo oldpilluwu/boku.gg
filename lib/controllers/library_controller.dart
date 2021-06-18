@@ -52,7 +52,7 @@ class LibraryController extends GetxController {
 
     try {
       isLoading(true);
-      await libraryCollection.doc(uid).collection(listName).add({
+      await libraryCollection.doc(uid).collection(listName).doc(id).set({
         "id": id,
         "title": title,
         "image": image,
