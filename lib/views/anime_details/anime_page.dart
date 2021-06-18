@@ -205,13 +205,20 @@ class AnimePage extends StatelessWidget {
                                               padding:
                                                   const EdgeInsets.all(10.0),
                                               child: ElevatedButton(
-                                                onPressed: () {
-                                                  libraryController.addToList(
-                                                      authController.user!.uid,
-                                                      'current',
-                                                      id,
-                                                      title,
-                                                      imageLink);
+                                                onPressed: () async {
+                                                  await libraryController
+                                                      .removeFromAllList(
+                                                          authController
+                                                              .user!.uid,
+                                                          id);
+                                                  await libraryController
+                                                      .addToList(
+                                                          authController
+                                                              .user!.uid,
+                                                          'current',
+                                                          id,
+                                                          title,
+                                                          imageLink);
                                                 },
                                                 child: Container(
                                                     width:
@@ -224,13 +231,20 @@ class AnimePage extends StatelessWidget {
                                               padding:
                                                   const EdgeInsets.all(10.0),
                                               child: ElevatedButton(
-                                                onPressed: () {
-                                                  libraryController.addToList(
-                                                      authController.user!.uid,
-                                                      'completed',
-                                                      id,
-                                                      title,
-                                                      imageLink);
+                                                onPressed: () async {
+                                                  await libraryController
+                                                      .removeFromAllList(
+                                                          authController
+                                                              .user!.uid,
+                                                          id);
+                                                  await libraryController
+                                                      .addToList(
+                                                          authController
+                                                              .user!.uid,
+                                                          'completed',
+                                                          id,
+                                                          title,
+                                                          imageLink);
                                                 },
                                                 child: Container(
                                                     width:
@@ -242,18 +256,42 @@ class AnimePage extends StatelessWidget {
                                               padding:
                                                   const EdgeInsets.all(10.0),
                                               child: ElevatedButton(
-                                                onPressed: () {
-                                                  libraryController.addToList(
-                                                      authController.user!.uid,
-                                                      'watchlist',
-                                                      id,
-                                                      title,
-                                                      imageLink);
+                                                onPressed: () async {
+                                                  await libraryController
+                                                      .removeFromAllList(
+                                                          authController
+                                                              .user!.uid,
+                                                          id);
+                                                  await libraryController
+                                                      .addToList(
+                                                          authController
+                                                              .user!.uid,
+                                                          'watchlist',
+                                                          id,
+                                                          title,
+                                                          imageLink);
                                                 },
                                                 child: Container(
                                                     width:
                                                         double.infinity * 0.8,
                                                     child: Text('Watch List')),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
+                                              child: ElevatedButton(
+                                                onPressed: () async {
+                                                  await libraryController
+                                                      .removeFromAllList(
+                                                          authController
+                                                              .user!.uid,
+                                                          id);
+                                                },
+                                                child: Container(
+                                                    width:
+                                                        double.infinity * 0.8,
+                                                    child: Text('Remove')),
                                               ),
                                             ),
                                           ],
@@ -295,7 +333,7 @@ class AnimePage extends StatelessWidget {
 
                       GridView.count(
                         padding: const EdgeInsets.all(2),
-                        controller: animeDetailScrollContainer,
+                        controller: ScrollController(),
                         shrinkWrap: true,
                         crossAxisCount: 4,
                         childAspectRatio: 2,

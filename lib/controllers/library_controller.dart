@@ -1,3 +1,4 @@
+import 'package:boku_gg/commons/controller.dart';
 import 'package:boku_gg/models/anime_display_model.dart';
 import 'package:boku_gg/models/anime_model.dart';
 import 'package:get/get.dart';
@@ -27,6 +28,11 @@ class LibraryController extends GetxController {
   Future<void> getUserLibrary(String uid) async {
     try {
       DocumentSnapshot doc = await libraryCollection.doc(uid).get();
+      currentWatching
+          .bindStream(listStream(authController.user!.uid, 'current'));
+      watchList.bindStream(listStream(authController.user!.uid, 'watchlist'));
+      completedWatching
+          .bindStream(listStream(authController.user!.uid, 'completed'));
     } catch (e) {
       print(e);
     }
@@ -39,18 +45,9 @@ class LibraryController extends GetxController {
     String title,
     String image,
   ) async {
-    // switch (listName) {
-    //   case "current":
-    //     currentWatching.add(AnimeDisplay(id: id, title: title, image: image));
-    //     break;
-    //   case "watchlist":
-    //     watchList.add(AnimeDisplay(id: id, title: title, image: image));
-    //     break;
-    //   case "completed":
-    //     completedWatching.add(AnimeDisplay(id: id, title: title, image: image));
-    //     break;
-    //   default:
-    // }
+    if (listName == 'current' && !isNotPresentIn('current', id)) return;
+    if (listName == 'watchlist' && !isNotPresentIn('watchlist', id)) return;
+    if (listName == 'completed' && !isNotPresentIn('current', id)) return;
 
     try {
       await libraryCollection.doc(uid).collection(listName).add({
@@ -65,5 +62,63 @@ class LibraryController extends GetxController {
     currentWatching.clear();
     completedWatching.clear();
     watchList.clear();
+  }
+
+  Stream<List<AnimeDisplay>> listStream(String uid, String listName) {
+    return libraryCollection
+        .doc(uid)
+        .collection(listName)
+        .snapshots()
+        .map((QuerySnapshot query) {
+      List<AnimeDisplay> retVal = [];
+      query.docs.forEach((element) {
+        retVal.add(AnimeDisplay.fromDocumentSnapshot(element));
+      });
+      print(retVal);
+      return retVal;
+    });
+  }
+
+  bool isNotPresentIn(String listName, String id) {
+    print(id);
+    switch (listName) {
+      case 'current':
+        return currentWatching.where((anime) => anime.id == id).isEmpty;
+      case 'completed':
+        return completedWatching.where((anime) => anime.id == id).isEmpty;
+      case 'watchlist':
+        return watchList.where((anime) => anime.id == id).isEmpty;
+      default:
+        return false;
+    }
+  }
+
+  Future<void> removeFromList(String uid, String listName, String id) async {
+    try {
+      var snapshot = await libraryCollection
+          .doc(uid)
+          .collection(listName)
+          .where("id", isEqualTo: id)
+          .get();
+      for (var doc in snapshot.docs) await doc.reference.delete();
+    } catch (e) {}
+  }
+
+  Future<void> removeFromAllList(String uid, String id) async {
+    await removeFromList(authController.user!.uid, 'watchlist', id);
+    await removeFromList(authController.user!.uid, 'current', id);
+    await removeFromList(authController.user!.uid, 'completed', id);
+  }
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+  }
+
+  @override
+  void onClose() {
+    // TODO: implement onClose
+    super.onClose();
   }
 }

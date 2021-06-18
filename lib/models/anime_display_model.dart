@@ -31,7 +31,7 @@ class AnimeDisplay {
 
   factory AnimeDisplay.fromDocumentSnapshot(DocumentSnapshot doc) =>
       AnimeDisplay(
-        id: doc.id,
+        id: doc['id'],
         title: doc['title'],
         image: doc["image"],
       );

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 AnimeController animeController = AnimeController.instance;
-ScrollController animeDetailScrollContainer = Get.find();
 SearchController searchController = SearchController.instance;
 AuthController authController = Get.find();
 LibraryController libraryController = Get.find();

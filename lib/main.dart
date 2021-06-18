@@ -24,7 +24,6 @@ void main() async {
   Get.put(LibraryController());
   Get.put(AnimeController());
   Get.put(SearchController());
-  Get.put(ScrollController());
   runApp(MyApp());
 }
 

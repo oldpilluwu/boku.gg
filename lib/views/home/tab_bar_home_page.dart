@@ -22,9 +22,9 @@ class TabBarHomePage extends StatelessWidget {
               automaticallyImplyLeading: false,
               elevation: 0,
               title: Text(
-                  "boku.gg",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: ColorPalette.textColor),
+                "boku.gg",
+                textAlign: TextAlign.center,
+                style: TextStyle(color: ColorPalette.textColor),
                 // ),
               ),
               backgroundColor: ColorPalette.primaryColor,
