@@ -8,6 +8,7 @@ class LibraryController extends GetxController {
   final CollectionReference<Map<String, dynamic>> libraryCollection =
       FirebaseFirestore.instance.collection('library');
 
+  var isLoading = false.obs;
   var currentWatching = <AnimeDisplay>[].obs;
   var watchList = <AnimeDisplay>[].obs;
   var completedWatching = <AnimeDisplay>[].obs;
@@ -49,13 +50,17 @@ class LibraryController extends GetxController {
     if (listName == 'watchlist' && !isNotPresentIn('watchlist', id)) return;
     if (listName == 'completed' && !isNotPresentIn('current', id)) return;
 
+    isLoading(true);
     try {
-      await libraryCollection.doc(uid).collection(listName).add({
-        "id": id,
-        "title": title,
-        "image": image,
-      });
-    } catch (e) {}
+      if (isLoading.value)
+        await libraryCollection.doc(uid).collection(listName).add({
+          "id": id,
+          "title": title,
+          "image": image,
+        });
+    } catch (e) {} finally {
+      isLoading(false);
+    }
   }
 
   void clearList() {
