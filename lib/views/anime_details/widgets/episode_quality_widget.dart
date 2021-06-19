@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class EpisodeQuality extends StatelessWidget {
-  String quality;
-  String link;
+  final String quality;
+  final String link;
 
   EpisodeQuality({required this.quality, required this.link});
 

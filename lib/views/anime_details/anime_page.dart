@@ -1,7 +1,7 @@
 import 'package:boku_gg/commons/color_palette.dart';
 import 'package:boku_gg/commons/controller.dart';
-import 'package:boku_gg/widgets/episode_button.dart';
-import 'package:boku_gg/widgets/episode_quality_widget.dart';
+import 'package:boku_gg/views/anime_details/widgets/episode_button.dart';
+import 'package:boku_gg/views/anime_details/widgets/episode_quality_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
@@ -43,29 +43,6 @@ class AnimePage extends StatelessWidget {
               children: [
                 Stack(
                   children: [
-                    Container(
-                      height: 35,
-                      width: 35,
-                      child: FloatingActionButton(
-                        child: Icon(Icons.check),
-                        onPressed: () {},
-                        backgroundColor: Colors.pink,
-                      ),
-                    ),
-                    // Positioned(
-                    //   right: 8,
-                    //   top: 12,
-                    //   child: Container(
-                    //     height: 35,
-                    //     width: 35,
-                    //     child: FloatingActionButton(
-                    //         child: Icon(Icons.add),
-                    //         onPressed: () {},
-                    //         backgroundColor: Colors.pink,
-                    //       ),
-                    //   ),
-                    // ),
-
                     Row(
                       children: [
                         Expanded(
@@ -307,19 +284,6 @@ class AnimePage extends StatelessWidget {
                               ),
                             ),
                             Expanded(flex: 1, child: Container()),
-                            // Expanded(
-                            //   flex: 4,
-                            //   child: Container(
-                            //     child: FloatingActionButton(
-                            //       heroTag: "check",
-                            //       child: Icon(Icons.check, color: ColorPalette.textColor,),
-                            //       backgroundColor: ColorPalette.secondaryColorDark.withOpacity(.75),
-                            //       onPressed: () {
-                            //         //DO YOUR SHIT
-                            //       },
-                            //     ),
-                            //   ),
-                            // ),
                           ],
                         ),
                       ),

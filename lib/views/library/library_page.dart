@@ -1,6 +1,6 @@
 import 'package:boku_gg/commons/color_palette.dart';
 import 'package:boku_gg/commons/controller.dart';
-import 'package:boku_gg/widgets/library_list.dart';
+import 'package:boku_gg/views/library/widgets/library_list.dart';
 import 'package:boku_gg/widgets/logout_icon.dart';
 import 'package:boku_gg/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';

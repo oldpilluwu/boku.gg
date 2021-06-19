@@ -1,6 +1,5 @@
 import 'package:boku_gg/commons/controller.dart';
 import 'package:boku_gg/models/anime_display_model.dart';
-import 'package:boku_gg/models/anime_model.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -28,7 +27,7 @@ class LibraryController extends GetxController {
 
   Future<void> getUserLibrary(String uid) async {
     try {
-      DocumentSnapshot doc = await libraryCollection.doc(uid).get();
+      // DocumentSnapshot doc = await libraryCollection.doc(uid).get();
       currentWatching
           .bindStream(listStream(authController.user!.uid, 'current'));
       watchList.bindStream(listStream(authController.user!.uid, 'watchlist'));
