@@ -7,7 +7,7 @@ class GenreButton extends SizedBox {
     double width = 120,
     Color textColor = Colors.black87,
     double borderRadius = 8,
-    double fontSize = 14,
+    double fontSize = 16,
     required String title,
     required Color color,
     required VoidCallback onPressed,
@@ -15,9 +15,12 @@ class GenreButton extends SizedBox {
       super(
           child: ElevatedButton(
             onPressed: onPressed,
-            child: Text(title,
-              style: TextStyle(color: textColor, fontSize: fontSize, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
+            child: FittedBox(
+              fit: BoxFit.fill,
+              child: Text(title,
+                style: TextStyle(color: textColor, fontSize: fontSize, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
             ),
             style: ElevatedButton.styleFrom(
                 primary: color,

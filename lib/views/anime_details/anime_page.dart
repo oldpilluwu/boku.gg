@@ -1,5 +1,6 @@
 import 'package:boku_gg/commons/color_palette.dart';
 import 'package:boku_gg/commons/controller.dart';
+import 'package:boku_gg/views/anime_details/widgets/add_to_list_button.dart';
 import 'package:boku_gg/views/anime_details/widgets/episode_button.dart';
 import 'package:boku_gg/views/anime_details/widgets/episode_quality_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -178,103 +179,69 @@ class AnimePage extends StatelessWidget {
                                       builder: (context) {
                                         return Column(
                                           children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(10.0),
-                                              child: ElevatedButton(
-                                                onPressed: () async {
-                                                  if(!libraryController.isNotPresentIn('current', id)) return;
-                                                  await libraryController
-                                                      .removeFromAllList(
-                                                          authController
-                                                              .user!.uid,
-                                                          id);
-                                                  await libraryController
-                                                      .addToList(
-                                                          authController
-                                                              .user!.uid,
-                                                          'current',
-                                                          id,
-                                                          title,
-                                                          imageLink);
-                                                },
-                                                child: Container(
-                                                    width:
-                                                        double.infinity * 0.8,
-                                                    child: Text(
-                                                        'Currently Watching')),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(10.0),
-                                              child: ElevatedButton(
-                                                onPressed: () async {
-                                                  if(!libraryController.isNotPresentIn('completed', id)) return;
-                                                  await libraryController
-                                                      .removeFromAllList(
-                                                          authController
-                                                              .user!.uid,
-                                                          id);
-                                                  await libraryController
-                                                      .addToList(
-                                                          authController
-                                                              .user!.uid,
-                                                          'completed',
-                                                          id,
-                                                          title,
-                                                          imageLink);
-                                                },
-                                                child: Container(
-                                                    width:
-                                                        double.infinity * 0.8,
-                                                    child: Text('Completed')),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(10.0),
-                                              child: ElevatedButton(
-                                                onPressed: () async {
-                                                  if(!libraryController.isNotPresentIn('watchlist', id)) return;
-                                                  await libraryController
-                                                      .removeFromAllList(
-                                                          authController
-                                                              .user!.uid,
-                                                          id)
-                                                  ;
-                                                  await libraryController
-                                                      .addToList(
-                                                          authController
-                                                              .user!.uid,
-                                                          'watchlist',
-                                                          id,
-                                                          title,
-                                                          imageLink);
-                                                },
-                                                child: Container(
-                                                    width:
-                                                        double.infinity * 0.8,
-                                                    child: Text('Watch List')),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(10.0),
-                                              child: ElevatedButton(
+                                            AddToListButton(
+                                              title: 'Currently Watching',
+                                              onPressed: () async {
+                                              if(!libraryController.isNotPresentIn('current', id)) return;
+                                              await libraryController
+                                                  .removeFromAllList(
+                                                  authController
+                                                      .user!.uid,
+                                                  id);
+                                              await libraryController
+                                                  .addToList(
+                                                  authController
+                                                      .user!.uid,
+                                                  'current',
+                                                  id,
+                                                  title,
+                                                  imageLink);
+                                            },),
+
+                                            AddToListButton(title: "Completed",
+                                              onPressed: () async {
+                                                if(!libraryController.isNotPresentIn('completed', id)) return;
+                                                await libraryController
+                                                    .removeFromAllList(
+                                                    authController.user!.uid,
+                                                    id);
+                                                await libraryController
+                                                    .addToList(
+                                                    authController.user!.uid,
+                                                    'completed',
+                                                    id,
+                                                    title,
+                                                    imageLink);
+                                              },),
+
+                                            AddToListButton(title: "Watchlist", onPressed: () async {
+                                              if(!libraryController.isNotPresentIn('watchlist', id)) return;
+                                              await libraryController
+                                                  .removeFromAllList(
+                                                  authController
+                                                      .user!.uid,
+                                                  id)
+                                              ;
+                                              await libraryController
+                                                  .addToList(
+                                                  authController
+                                                      .user!.uid,
+                                                  'watchlist',
+                                                  id,
+                                                  title,
+                                                  imageLink);
+                                            },),
+
+                                            AddToListButton(title: "Remove from list",
+                                                color: ColorPalette.red,
                                                 onPressed: () async {
                                                   await libraryController
                                                       .removeFromAllList(
-                                                          authController
-                                                              .user!.uid,
-                                                          id);
-                                                },
-                                                child: Container(
-                                                    width:
-                                                        double.infinity * 0.8,
-                                                    child: Text('Remove')),
-                                              ),
-                                            ),
+                                                      authController
+                                                          .user!.uid,
+                                                      id);
+                                                }),
+
                                           ],
                                         );
                                       },
