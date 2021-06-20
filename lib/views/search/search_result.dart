@@ -25,7 +25,7 @@ class SearchResultPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white12,
       body: _buildContent(),
-      // bottomNavigationBar: NagivationBar(index: 1)
+      bottomNavigationBar: NagivationBar(index: 1)
     );
   }
 
