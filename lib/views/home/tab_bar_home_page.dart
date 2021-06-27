@@ -1,10 +1,9 @@
 import 'package:boku_gg/commons/color_palette.dart';
 import 'package:boku_gg/commons/controller.dart';
-import 'package:boku_gg/widgets/anime_display_view.dart';
+import 'package:boku_gg/views/home/widgets/anime_display_view.dart';
 import 'package:boku_gg/widgets/logout_icon.dart';
 import 'package:boku_gg/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class TabBarHomePage extends StatelessWidget {
   @override

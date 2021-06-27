@@ -1,6 +1,3 @@
-
-import 'dart:ffi';
-
 import 'package:boku_gg/commons/color_palette.dart';
 import 'package:flutter/material.dart';
 
