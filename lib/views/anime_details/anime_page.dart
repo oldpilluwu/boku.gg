@@ -1,7 +1,9 @@
 import 'package:boku_gg/commons/color_palette.dart';
 import 'package:boku_gg/commons/controller.dart';
-import 'package:boku_gg/widgets/episode_button.dart';
-import 'package:boku_gg/widgets/episode_quality_widget.dart';
+import 'package:boku_gg/views/anime_details/widgets/add_to_list_button.dart';
+import 'package:boku_gg/views/anime_details/widgets/episode_button.dart';
+import 'package:boku_gg/views/anime_details/widgets/episode_list_gridview.dart';
+import 'package:boku_gg/views/anime_details/widgets/episode_quality_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
@@ -28,6 +30,12 @@ class AnimePage extends StatelessWidget {
   final Color statusBarColor = ColorPalette.green;
   final Color statusTextColor = Color(0xFF282828);
 
+  ScrollController _scrollController = ScrollController();
+  List animeEpisodes = List.generate(0, (index) => null);
+  int episodeList = 0;
+
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,29 +51,6 @@ class AnimePage extends StatelessWidget {
               children: [
                 Stack(
                   children: [
-                    Container(
-                      height: 35,
-                      width: 35,
-                      child: FloatingActionButton(
-                        child: Icon(Icons.check),
-                        onPressed: () {},
-                        backgroundColor: Colors.pink,
-                      ),
-                    ),
-                    // Positioned(
-                    //   right: 8,
-                    //   top: 12,
-                    //   child: Container(
-                    //     height: 35,
-                    //     width: 35,
-                    //     child: FloatingActionButton(
-                    //         child: Icon(Icons.add),
-                    //         onPressed: () {},
-                    //         backgroundColor: Colors.pink,
-                    //       ),
-                    //   ),
-                    // ),
-
                     Row(
                       children: [
                         Expanded(
@@ -158,7 +143,6 @@ class AnimePage extends StatelessWidget {
                         ),
                       ),
 
-                      //
                       Container(
                         margin: EdgeInsets.all(8),
                         child: Row(
@@ -201,103 +185,69 @@ class AnimePage extends StatelessWidget {
                                       builder: (context) {
                                         return Column(
                                           children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(10.0),
-                                              child: ElevatedButton(
-                                                onPressed: () async {
-                                                  if(!libraryController.isNotPresentIn('current', id)) return;
-                                                  await libraryController
-                                                      .removeFromAllList(
-                                                          authController
-                                                              .user!.uid,
-                                                          id);
-                                                  await libraryController
-                                                      .addToList(
-                                                          authController
-                                                              .user!.uid,
-                                                          'current',
-                                                          id,
-                                                          title,
-                                                          imageLink);
-                                                },
-                                                child: Container(
-                                                    width:
-                                                        double.infinity * 0.8,
-                                                    child: Text(
-                                                        'Currently Watching')),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(10.0),
-                                              child: ElevatedButton(
-                                                onPressed: () async {
-                                                  if(!libraryController.isNotPresentIn('completed', id)) return;
-                                                  await libraryController
-                                                      .removeFromAllList(
-                                                          authController
-                                                              .user!.uid,
-                                                          id);
-                                                  await libraryController
-                                                      .addToList(
-                                                          authController
-                                                              .user!.uid,
-                                                          'completed',
-                                                          id,
-                                                          title,
-                                                          imageLink);
-                                                },
-                                                child: Container(
-                                                    width:
-                                                        double.infinity * 0.8,
-                                                    child: Text('Completed')),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(10.0),
-                                              child: ElevatedButton(
-                                                onPressed: () async {
-                                                  if(!libraryController.isNotPresentIn('watchlist', id)) return;
-                                                  await libraryController
-                                                      .removeFromAllList(
-                                                          authController
-                                                              .user!.uid,
-                                                          id)
-                                                  ;
-                                                  await libraryController
-                                                      .addToList(
-                                                          authController
-                                                              .user!.uid,
-                                                          'watchlist',
-                                                          id,
-                                                          title,
-                                                          imageLink);
-                                                },
-                                                child: Container(
-                                                    width:
-                                                        double.infinity * 0.8,
-                                                    child: Text('Watch List')),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(10.0),
-                                              child: ElevatedButton(
+                                            AddToListButton(
+                                              title: 'Currently Watching',
+                                              onPressed: () async {
+                                              if(!libraryController.isNotPresentIn('current', id)) return;
+                                              await libraryController
+                                                  .removeFromAllList(
+                                                  authController
+                                                      .user!.uid,
+                                                  id);
+                                              await libraryController
+                                                  .addToList(
+                                                  authController
+                                                      .user!.uid,
+                                                  'current',
+                                                  id,
+                                                  title,
+                                                  imageLink);
+                                            },),
+
+                                            AddToListButton(title: "Completed",
+                                              onPressed: () async {
+                                                if(!libraryController.isNotPresentIn('completed', id)) return;
+                                                await libraryController
+                                                    .removeFromAllList(
+                                                    authController.user!.uid,
+                                                    id);
+                                                await libraryController
+                                                    .addToList(
+                                                    authController.user!.uid,
+                                                    'completed',
+                                                    id,
+                                                    title,
+                                                    imageLink);
+                                              },),
+
+                                            AddToListButton(title: "Watchlist", onPressed: () async {
+                                              if(!libraryController.isNotPresentIn('watchlist', id)) return;
+                                              await libraryController
+                                                  .removeFromAllList(
+                                                  authController
+                                                      .user!.uid,
+                                                  id)
+                                              ;
+                                              await libraryController
+                                                  .addToList(
+                                                  authController
+                                                      .user!.uid,
+                                                  'watchlist',
+                                                  id,
+                                                  title,
+                                                  imageLink);
+                                            },),
+
+                                            AddToListButton(title: "Remove from list",
+                                                color: ColorPalette.red,
                                                 onPressed: () async {
                                                   await libraryController
                                                       .removeFromAllList(
-                                                          authController
-                                                              .user!.uid,
-                                                          id);
-                                                },
-                                                child: Container(
-                                                    width:
-                                                        double.infinity * 0.8,
-                                                    child: Text('Remove')),
-                                              ),
-                                            ),
+                                                      authController
+                                                          .user!.uid,
+                                                      id);
+                                                }),
+
                                           ],
                                         );
                                       },
@@ -307,19 +257,6 @@ class AnimePage extends StatelessWidget {
                               ),
                             ),
                             Expanded(flex: 1, child: Container()),
-                            // Expanded(
-                            //   flex: 4,
-                            //   child: Container(
-                            //     child: FloatingActionButton(
-                            //       heroTag: "check",
-                            //       child: Icon(Icons.check, color: ColorPalette.textColor,),
-                            //       backgroundColor: ColorPalette.secondaryColorDark.withOpacity(.75),
-                            //       onPressed: () {
-                            //         //DO YOUR SHIT
-                            //       },
-                            //     ),
-                            //   ),
-                            // ),
                           ],
                         ),
                       ),
@@ -335,74 +272,143 @@ class AnimePage extends StatelessWidget {
                         ),
                       ),
 
-                      GridView.count(
-                        padding: const EdgeInsets.all(2),
-                        controller: ScrollController(),
-                        shrinkWrap: true,
-                        crossAxisCount: 4,
-                        childAspectRatio: 2,
-                        addAutomaticKeepAlives: false,
-                        children: [
-                          ...List.generate(
-                              totalEpisodes,
-                              (index) => EpisodeButton(
-                                    onPressed: () {
-                                      animeController.fetchAnimeEpisode(
-                                          animeController.activeAnime!.value.id,
-                                          index + 1);
-                                      showModalBottomSheet(
-                                          context: context,
-                                          builder: (context) {
-                                            return Column(
-                                              children: [
-                                                Container(
-                                                  margin: EdgeInsets.all(10),
-                                                  child: Center(
-                                                    child: Text(
-                                                      'Episode ${index + 1}',
-                                                      style: TextStyle(
-                                                          fontSize: 24,
-                                                          color: ColorPalette
-                                                              .textColor),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Divider(),
-                                                Obx(() {
-                                                  if (animeController
-                                                      .episodeLoading.value)
-                                                    return Center(
-                                                      child:
-                                                          CircularProgressIndicator(),
-                                                    );
-                                                  else
-                                                    return Expanded(
-                                                      child: ListView(
-                                                        shrinkWrap: true,
-                                                        children: <Widget>[
-                                                          ...animeController
-                                                              .episodeQuality!
-                                                              .map(
-                                                            (element) =>
-                                                                EpisodeQuality(
-                                                              quality: element
-                                                                  .quality,
-                                                              link:
-                                                                  element.link,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    );
-                                                }),
-                                              ],
-                                            );
-                                          });
-                                    },
-                                    episodeNumber: index + 1,
-                                  )),
-                        ],
-                      )
+                      // GridView.builder(
+                      //
+                      //   gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                      //       crossAxisCount: 4,
+                      //       childAspectRatio: 2,
+                      //   ),
+                      //
+                      //   padding: const EdgeInsets.all(2),
+                      //   controller: _scrollController,
+                      //   shrinkWrap: true,
+                      //   // crossAxisCount: 4,
+                      //   // childAspectRatio: 2,
+                      //   addAutomaticKeepAlives: false,
+                      //   itemCount: totalEpisodes,
+                      //   itemBuilder: (BuildContext context, int index) {
+                      //     return EpisodeButton(
+                      //               onPressed: () {
+                      //                 animeController.fetchAnimeEpisode(
+                      //                     animeController.activeAnime!.value.id,
+                      //                     index + 1);
+                      //                 showModalBottomSheet(
+                      //                     context: context,
+                      //                     builder: (context) {
+                      //                       return Column(
+                      //                         children: [
+                      //                           Container(
+                      //                             margin: EdgeInsets.all(10),
+                      //                             child: Center(
+                      //                               child: Text(
+                      //                                 'Episode ${index + 1}',
+                      //                                 style: TextStyle(
+                      //                                     fontSize: 24,
+                      //                                     color: ColorPalette
+                      //                                         .textColor),
+                      //                               ),
+                      //                             ),
+                      //                           ),
+                      //                           Divider(),
+                      //                           Obx(() {
+                      //                             if (animeController
+                      //                                 .episodeLoading.value)
+                      //                               return Center(
+                      //                                 child:
+                      //                                     CircularProgressIndicator(),
+                      //                               );
+                      //                             else
+                      //                               return Expanded(
+                      //                                 child: ListView(
+                      //                                   shrinkWrap: true,
+                      //                                   children: <Widget>[
+                      //                                     ...animeController
+                      //                                         .episodeQuality!
+                      //                                         .map(
+                      //                                       (element) =>
+                      //                                           EpisodeQuality(
+                      //                                         quality: element
+                      //                                             .quality,
+                      //                                         link:
+                      //                                             element.link,
+                      //                                       ),
+                      //                                     ),
+                      //                                   ],
+                      //                                 ),
+                      //                               );
+                      //                           }),
+                      //                         ],
+                      //                       );
+                      //                     });
+                      //               },
+                      //               episodeNumber: index + 1,
+                      //             );
+                      //   },
+                      //
+                      //   // children: [
+                      //   //   ...List.generate(
+                      //   //       totalEpisodes,
+                      //   //       (index) => EpisodeButton(
+                      //   //             onPressed: () {
+                      //   //               animeController.fetchAnimeEpisode(
+                      //   //                   animeController.activeAnime!.value.id,
+                      //   //                   index + 1);
+                      //   //               showModalBottomSheet(
+                      //   //                   context: context,
+                      //   //                   builder: (context) {
+                      //   //                     return Column(
+                      //   //                       children: [
+                      //   //                         Container(
+                      //   //                           margin: EdgeInsets.all(10),
+                      //   //                           child: Center(
+                      //   //                             child: Text(
+                      //   //                               'Episode ${index + 1}',
+                      //   //                               style: TextStyle(
+                      //   //                                   fontSize: 24,
+                      //   //                                   color: ColorPalette
+                      //   //                                       .textColor),
+                      //   //                             ),
+                      //   //                           ),
+                      //   //                         ),
+                      //   //                         Divider(),
+                      //   //                         Obx(() {
+                      //   //                           if (animeController
+                      //   //                               .episodeLoading.value)
+                      //   //                             return Center(
+                      //   //                               child:
+                      //   //                                   CircularProgressIndicator(),
+                      //   //                             );
+                      //   //                           else
+                      //   //                             return Expanded(
+                      //   //                               child: ListView(
+                      //   //                                 shrinkWrap: true,
+                      //   //                                 children: <Widget>[
+                      //   //                                   ...animeController
+                      //   //                                       .episodeQuality!
+                      //   //                                       .map(
+                      //   //                                     (element) =>
+                      //   //                                         EpisodeQuality(
+                      //   //                                       quality: element
+                      //   //                                           .quality,
+                      //   //                                       link:
+                      //   //                                           element.link,
+                      //   //                                     ),
+                      //   //                                   ),
+                      //   //                                 ],
+                      //   //                               ),
+                      //   //                             );
+                      //   //                         }),
+                      //   //                       ],
+                      //   //                     );
+                      //   //                   });
+                      //   //             },
+                      //   //             episodeNumber: index + 1,
+                      //   //           )
+                      //   //           ),
+                      //   // ],
+                      // ),
+                      
+                      EpisodeListGridview(totalEpisodes: totalEpisodes,),
                     ],
                   ),
                 ),

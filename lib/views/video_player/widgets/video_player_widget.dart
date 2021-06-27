@@ -1,4 +1,4 @@
-import 'package:boku_gg/widgets/video_player_overlay.dart';
+import 'package:boku_gg/views/video_player/widgets/video_player_overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 

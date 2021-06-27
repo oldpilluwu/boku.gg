@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 class SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    String currentText ="";
     return Container(
       margin: EdgeInsets.all(20),
       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -27,8 +28,10 @@ class SearchBar extends StatelessWidget {
         children: [
           Expanded(
             child: TextField(
-              // ADD FUNCTIONALITY
-              // controller: (value) {print(value);},
+              onChanged: (text) {
+                currentText = text;
+                print(text);
+              },
               onSubmitted: (text) {
                 searchController.fetchSearchDisplayList(text);
                 Get.to(() => SearchResultPage(
@@ -48,9 +51,18 @@ class SearchBar extends StatelessWidget {
                 // fillColor: Colors.red,
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
-                suffixIcon: Icon(
-                  Icons.search_rounded,
-                  color: ColorPalette.secondaryColor,
+                suffixIcon: GestureDetector(
+                  onTap: () {
+                    searchController.fetchSearchDisplayList(currentText);
+                    Get.to(() => SearchResultPage(
+                      animeList: searchController.searchAnimeList,
+                      controller: searchController.scrollController,
+                    ));
+                  },
+                  child: Icon(
+                    Icons.search_rounded,
+                    color: ColorPalette.secondaryColor,
+                  ),
                 ),
               ),
             ),

@@ -1,12 +1,10 @@
-import 'package:boku_gg/commons/color_palette.dart';
 import 'package:boku_gg/commons/controller.dart';
-import 'package:boku_gg/widgets/custom_text_field.dart';
-import 'package:boku_gg/widgets/positioned_logo.dart';
-import 'package:boku_gg/widgets/pressable_texts.dart';
-import 'package:boku_gg/widgets/submit_button.dart';
+import 'package:boku_gg/views/authentication/widgets/custom_text_field.dart';
+import 'package:boku_gg/views/authentication/widgets/positioned_logo.dart';
+import 'package:boku_gg/views/authentication/widgets/pressable_texts.dart';
+import 'package:boku_gg/views/authentication/widgets/submit_button.dart';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,11 +1,12 @@
 import 'package:boku_gg/commons/color_palette.dart';
 import 'package:boku_gg/views/video_player/video_player_page.dart';
+import 'package:boku_gg/views/video_player/webview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class EpisodeQuality extends StatelessWidget {
-  String quality;
-  String link;
+  final String quality;
+  final String link;
 
   EpisodeQuality({required this.quality, required this.link});
 
@@ -16,7 +17,7 @@ class EpisodeQuality extends StatelessWidget {
     if (slicedQualityText == "HDP") slicedQualityText = "HDP (Recommmended)";
     return GestureDetector(
       onTap: () {
-        Get.to(() => VideoPlayerPage(videoLink: link));
+        Get.to(() => WebViewVideoPlayer(link: link) );
         print(link);
       },
       child: Container(
