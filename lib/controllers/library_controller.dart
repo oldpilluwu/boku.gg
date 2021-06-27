@@ -28,7 +28,6 @@ class LibraryController extends GetxController {
 
   Future<void> getUserLibrary(String uid) async {
     try {
-      DocumentSnapshot doc = await libraryCollection.doc(uid).get();
       currentWatching
           .bindStream(listStream(authController.user!.uid, 'current'));
       watchList.bindStream(listStream(authController.user!.uid, 'watchlist'));

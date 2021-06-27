@@ -5,7 +5,6 @@ import 'package:boku_gg/controllers/auth_controller.dart';
 import 'package:boku_gg/views/authentication/password_change_request_page.dart';
 
 import 'package:boku_gg/views/authentication/sign_up_page.dart';
-import 'package:boku_gg/views/home/tab_bar_home_page.dart';
 import 'package:boku_gg/widgets/custom_text_field.dart';
 import 'package:boku_gg/widgets/positioned_logo.dart';
 import 'package:boku_gg/widgets/pressable_texts.dart';
