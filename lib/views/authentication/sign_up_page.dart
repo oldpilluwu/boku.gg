@@ -24,7 +24,6 @@ class SignUpPage extends StatelessWidget {
 
   Widget _buildContent() {
     return SafeArea(
-      // padding: const EdgeInsets.all(10.0),
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -32,10 +31,10 @@ class SignUpPage extends StatelessWidget {
           children: [
             SizedBox(height: 20),
 
-
             PositionedLogo(),
 
             CustomTextField(controller: emailController, hintText: "Email"),
+
             CustomTextField(controller: passwordController, hintText: "Password", isPassword: true),
 
             SizedBox(height: 40),

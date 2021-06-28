@@ -15,7 +15,6 @@ class PressableText extends Container {
           margin: EdgeInsets.fromLTRB(30, 10, 30, 10),
           child: Text.rich(
             TextSpan(
-              // text: "Don't have an account? ",
               text: unhighlightedText,
               style: TextStyle(fontSize: 14),
               children: <TextSpan>[

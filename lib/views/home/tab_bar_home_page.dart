@@ -24,7 +24,6 @@ class TabBarHomePage extends StatelessWidget {
                 "boku.gg",
                 textAlign: TextAlign.center,
                 style: TextStyle(color: ColorPalette.textColor),
-                // ),
               ),
               backgroundColor: ColorPalette.primaryColor,
               bottom: TabBar(

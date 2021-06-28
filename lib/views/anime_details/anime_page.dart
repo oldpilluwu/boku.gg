@@ -1,13 +1,9 @@
 import 'package:boku_gg/commons/color_palette.dart';
 import 'package:boku_gg/commons/controller.dart';
 import 'package:boku_gg/views/anime_details/widgets/add_to_list_button.dart';
-import 'package:boku_gg/views/anime_details/widgets/episode_button.dart';
 import 'package:boku_gg/views/anime_details/widgets/episode_list_gridview.dart';
-import 'package:boku_gg/views/anime_details/widgets/episode_quality_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:get/state_manager.dart';
-import 'package:get/get.dart';
 
 class AnimePage extends StatelessWidget {
   AnimePage({
@@ -30,12 +26,6 @@ class AnimePage extends StatelessWidget {
   final Color statusBarColor = ColorPalette.green;
   final Color statusTextColor = Color(0xFF282828);
 
-  ScrollController _scrollController = ScrollController();
-  List animeEpisodes = List.generate(0, (index) => null);
-  int episodeList = 0;
-
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,9 +33,6 @@ class AnimePage extends StatelessWidget {
         child: Container(
           color: Color(0xFF282828),
           child: Column(
-
-              // Positioned()
-
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -271,149 +258,10 @@ class AnimePage extends StatelessWidget {
                           ),
                         ),
                       ),
-
-                      // GridView.builder(
-                      //
-                      //   gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-                      //       crossAxisCount: 4,
-                      //       childAspectRatio: 2,
-                      //   ),
-                      //
-                      //   padding: const EdgeInsets.all(2),
-                      //   controller: _scrollController,
-                      //   shrinkWrap: true,
-                      //   // crossAxisCount: 4,
-                      //   // childAspectRatio: 2,
-                      //   addAutomaticKeepAlives: false,
-                      //   itemCount: totalEpisodes,
-                      //   itemBuilder: (BuildContext context, int index) {
-                      //     return EpisodeButton(
-                      //               onPressed: () {
-                      //                 animeController.fetchAnimeEpisode(
-                      //                     animeController.activeAnime!.value.id,
-                      //                     index + 1);
-                      //                 showModalBottomSheet(
-                      //                     context: context,
-                      //                     builder: (context) {
-                      //                       return Column(
-                      //                         children: [
-                      //                           Container(
-                      //                             margin: EdgeInsets.all(10),
-                      //                             child: Center(
-                      //                               child: Text(
-                      //                                 'Episode ${index + 1}',
-                      //                                 style: TextStyle(
-                      //                                     fontSize: 24,
-                      //                                     color: ColorPalette
-                      //                                         .textColor),
-                      //                               ),
-                      //                             ),
-                      //                           ),
-                      //                           Divider(),
-                      //                           Obx(() {
-                      //                             if (animeController
-                      //                                 .episodeLoading.value)
-                      //                               return Center(
-                      //                                 child:
-                      //                                     CircularProgressIndicator(),
-                      //                               );
-                      //                             else
-                      //                               return Expanded(
-                      //                                 child: ListView(
-                      //                                   shrinkWrap: true,
-                      //                                   children: <Widget>[
-                      //                                     ...animeController
-                      //                                         .episodeQuality!
-                      //                                         .map(
-                      //                                       (element) =>
-                      //                                           EpisodeQuality(
-                      //                                         quality: element
-                      //                                             .quality,
-                      //                                         link:
-                      //                                             element.link,
-                      //                                       ),
-                      //                                     ),
-                      //                                   ],
-                      //                                 ),
-                      //                               );
-                      //                           }),
-                      //                         ],
-                      //                       );
-                      //                     });
-                      //               },
-                      //               episodeNumber: index + 1,
-                      //             );
-                      //   },
-                      //
-                      //   // children: [
-                      //   //   ...List.generate(
-                      //   //       totalEpisodes,
-                      //   //       (index) => EpisodeButton(
-                      //   //             onPressed: () {
-                      //   //               animeController.fetchAnimeEpisode(
-                      //   //                   animeController.activeAnime!.value.id,
-                      //   //                   index + 1);
-                      //   //               showModalBottomSheet(
-                      //   //                   context: context,
-                      //   //                   builder: (context) {
-                      //   //                     return Column(
-                      //   //                       children: [
-                      //   //                         Container(
-                      //   //                           margin: EdgeInsets.all(10),
-                      //   //                           child: Center(
-                      //   //                             child: Text(
-                      //   //                               'Episode ${index + 1}',
-                      //   //                               style: TextStyle(
-                      //   //                                   fontSize: 24,
-                      //   //                                   color: ColorPalette
-                      //   //                                       .textColor),
-                      //   //                             ),
-                      //   //                           ),
-                      //   //                         ),
-                      //   //                         Divider(),
-                      //   //                         Obx(() {
-                      //   //                           if (animeController
-                      //   //                               .episodeLoading.value)
-                      //   //                             return Center(
-                      //   //                               child:
-                      //   //                                   CircularProgressIndicator(),
-                      //   //                             );
-                      //   //                           else
-                      //   //                             return Expanded(
-                      //   //                               child: ListView(
-                      //   //                                 shrinkWrap: true,
-                      //   //                                 children: <Widget>[
-                      //   //                                   ...animeController
-                      //   //                                       .episodeQuality!
-                      //   //                                       .map(
-                      //   //                                     (element) =>
-                      //   //                                         EpisodeQuality(
-                      //   //                                       quality: element
-                      //   //                                           .quality,
-                      //   //                                       link:
-                      //   //                                           element.link,
-                      //   //                                     ),
-                      //   //                                   ),
-                      //   //                                 ],
-                      //   //                               ),
-                      //   //                             );
-                      //   //                         }),
-                      //   //                       ],
-                      //   //                     );
-                      //   //                   });
-                      //   //             },
-                      //   //             episodeNumber: index + 1,
-                      //   //           )
-                      //   //           ),
-                      //   // ],
-                      // ),
-                      
                       EpisodeListGridview(totalEpisodes: totalEpisodes,),
                     ],
                   ),
                 ),
-                //   child: ,
-                // ),
               ]),
         ),
       ),

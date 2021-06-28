@@ -20,7 +20,6 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white12,
       body: _buildContent(),
-      // resizeToAvoidBottomInset: false,
     );
   }
 

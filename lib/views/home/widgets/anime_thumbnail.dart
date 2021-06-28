@@ -11,14 +11,11 @@ class AnimeThumbnail extends GestureDetector {
     required String title,
     required VoidCallback onPressed,
   }) : super(
-            // backgroundColor: Color(0xff282828),
-            // heroTag: null,
             onTap: onPressed,
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
               ),
-              // padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
               child: Stack(
                 fit: StackFit.expand,
                 children: <Widget>[

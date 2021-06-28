@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:wakelock/wakelock.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewVideoPlayer extends StatefulWidget {
@@ -12,21 +14,47 @@ class WebViewVideoPlayer extends StatefulWidget {
 }
 
 class WebViewVideoPlayerState extends State<WebViewVideoPlayer> {
-  // String link = widget.link;
   @override
   void initState() {
     super.initState();
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
+    // setLandscape();
+  }
+
+  void dispose() {
+    super.dispose();
+    setAllOrientations();
+  }
+
+  Future setLandscape() async {
+    await SystemChrome.setEnabledSystemUIOverlays([]);
+    await SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
+
+    await Wakelock.enable();
+  }
+  
+  Future setAllOrientations() async {
+    await SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+    await SystemChrome.setPreferredOrientations(DeviceOrientation.values);
+    await Wakelock.disable();
   }
 
   @override
   Widget build(BuildContext context) {
-    return WebView(
-      initialUrl: widget.link,
-      javascriptMode: JavascriptMode.unrestricted,
-      navigationDelegate: (NavigationRequest request) {
-        return NavigationDecision.prevent;
-      },
+    return SafeArea(
+      child: Container(
+        alignment: Alignment.center,
+        child: WebView(
+          initialUrl: widget.link,
+          javascriptMode: JavascriptMode.unrestricted,
+          navigationDelegate: (NavigationRequest request) {
+            return NavigationDecision.prevent;
+          },
+        ),
+      ),
     );
   }
 }
