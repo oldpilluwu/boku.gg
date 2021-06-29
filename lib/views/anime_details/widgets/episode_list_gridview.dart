@@ -6,17 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class EpisodeListGridview extends StatelessWidget {
-
   EpisodeListGridview({
     required this.totalEpisodes,
-});
+  });
   final int totalEpisodes;
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-
-      gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 4,
         childAspectRatio: 2,
       ),
@@ -32,8 +30,7 @@ class EpisodeListGridview extends StatelessWidget {
         return EpisodeButton(
           onPressed: () {
             animeController.fetchAnimeEpisode(
-                animeController.activeAnime!.value.id,
-                index + 1);
+                animeController.activeAnime!.value.id, index + 1);
             showModalBottomSheet(
                 context: context,
                 builder: (context) {
@@ -45,35 +42,26 @@ class EpisodeListGridview extends StatelessWidget {
                           child: Text(
                             'Episode ${index + 1}',
                             style: TextStyle(
-                                fontSize: 24,
-                                color: ColorPalette
-                                    .textColor),
+                                fontSize: 24, color: ColorPalette.textColor),
                           ),
                         ),
                       ),
                       Divider(),
                       Obx(() {
-                        if (animeController
-                            .episodeLoading.value)
+                        if (animeController.episodeLoading.value)
                           return Center(
-                            child:
-                            CircularProgressIndicator(),
+                            child: CircularProgressIndicator(),
                           );
                         else
                           return Expanded(
                             child: ListView(
                               shrinkWrap: true,
                               children: <Widget>[
-                                ...animeController
-                                    .episodeQuality!
-                                    .map(
-                                      (element) =>
-                                      EpisodeQuality(
-                                        quality: element
-                                            .quality,
-                                        link:
-                                        element.link,
-                                      ),
+                                ...animeController.episodeQuality!.map(
+                                  (element) => EpisodeQuality(
+                                    quality: element.quality,
+                                    link: element.link,
+                                  ),
                                 ),
                               ],
                             ),
@@ -86,7 +74,6 @@ class EpisodeListGridview extends StatelessWidget {
           episodeNumber: index + 1,
         );
       },
-
     );
   }
 }
