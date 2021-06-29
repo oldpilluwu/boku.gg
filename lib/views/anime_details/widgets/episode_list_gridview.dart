@@ -2,6 +2,7 @@ import 'package:boku_gg/commons/color_palette.dart';
 import 'package:boku_gg/commons/controller.dart';
 import 'package:boku_gg/views/anime_details/widgets/episode_button.dart';
 import 'package:boku_gg/views/anime_details/widgets/episode_quality_widget.dart';
+import 'package:boku_gg/views/video_player/webview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -61,6 +62,33 @@ class EpisodeListGridview extends StatelessWidget {
                                   (element) => EpisodeQuality(
                                     quality: element.quality,
                                     link: element.link,
+                                    onPressed: () async {
+                                      Get.to(() => WebViewVideoPlayer(
+                                          link: element.link));
+                                      if (libraryController.isNotPresentIn(
+                                              'completed',
+                                              animeController
+                                                  .activeAnime!.value.id) &&
+                                          libraryController.isNotPresentIn(
+                                              'current',
+                                              animeController
+                                                  .activeAnime!.value.id)) {
+                                        await libraryController
+                                            .removeFromAllList(
+                                                authController.user!.uid,
+                                                animeController
+                                                    .activeAnime!.value.id);
+                                        await libraryController.addToList(
+                                          authController.user!.uid,
+                                          "current",
+                                          animeController.activeAnime!.value.id,
+                                          animeController
+                                              .activeAnime!.value.title,
+                                          animeController
+                                              .activeAnime!.value.image,
+                                        );
+                                      }
+                                    },
                                   ),
                                 ),
                               ],
