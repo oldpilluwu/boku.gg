@@ -48,7 +48,7 @@ class LibraryPage extends StatelessWidget {
                   Tab(
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text("Wishlist"),
+                      child: Text("WatchList"),
                     ),
                   ),
                   Tab(
