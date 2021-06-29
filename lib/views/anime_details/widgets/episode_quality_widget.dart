@@ -6,8 +6,10 @@ import 'package:get/get.dart';
 class EpisodeQuality extends StatelessWidget {
   final String quality;
   final String link;
+  final VoidCallback onPressed;
 
-  EpisodeQuality({required this.quality, required this.link});
+  EpisodeQuality(
+      {required this.quality, required this.link, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +17,7 @@ class EpisodeQuality extends StatelessWidget {
         (quality.replaceAll(" - mp4)", "")).replaceAll("(", "");
     if (slicedQualityText == "HDP") slicedQualityText = "HDP (Recommmended)";
     return GestureDetector(
-      onTap: () {
-        Get.to(() => WebViewVideoPlayer(link: link));
-        print(link);
-      },
+      onTap: onPressed,
       child: Container(
         margin: EdgeInsets.all(5),
         decoration: BoxDecoration(
