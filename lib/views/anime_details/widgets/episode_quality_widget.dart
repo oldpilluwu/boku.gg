@@ -6,8 +6,10 @@ import 'package:get/get.dart';
 class EpisodeQuality extends StatelessWidget {
   final String quality;
   final String link;
+  final VoidCallback onPressed;
 
-  EpisodeQuality({required this.quality, required this.link});
+  EpisodeQuality(
+      {required this.quality, required this.link, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +24,7 @@ class EpisodeQuality extends StatelessWidget {
         margin: EdgeInsets.all(5),
         decoration: BoxDecoration(
             border: Border.all(color: ColorPalette.secondaryColor),
-            borderRadius: BorderRadius.circular(25)
-        ),
+            borderRadius: BorderRadius.circular(25)),
         height: 60,
         // color: ColorPalette.secondaryColor,
         padding: EdgeInsets.fromLTRB(15, 22, 15, 15),

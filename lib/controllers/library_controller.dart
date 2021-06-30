@@ -27,7 +27,6 @@ class LibraryController extends GetxController {
 
   Future<void> getUserLibrary(String uid) async {
     try {
-      // DocumentSnapshot doc = await libraryCollection.doc(uid).get();
       currentWatching
           .bindStream(listStream(authController.user!.uid, 'current'));
       watchList.bindStream(listStream(authController.user!.uid, 'watchlist'));
@@ -50,13 +49,16 @@ class LibraryController extends GetxController {
     if (listName == 'completed' && !isNotPresentIn('current', id)) return;
 
     try {
+      if (isLoading.value == true) return;
       isLoading(true);
       await libraryCollection.doc(uid).collection(listName).doc(id).set({
         "id": id,
         "title": title,
         "image": image,
       });
-    } catch (e) {} finally {
+    } catch (e) {
+      Get.snackbar("Error", e.toString(), snackPosition: SnackPosition.BOTTOM);
+    } finally {
       isLoading(false);
     }
   }
@@ -113,24 +115,14 @@ class LibraryController extends GetxController {
           .where("id", isEqualTo: id)
           .get();
       for (var doc in snapshot.docs) await doc.reference.delete();
-    } catch (e) {}
+    } catch (e) {
+      Get.snackbar("Error", e.toString(), snackPosition: SnackPosition.BOTTOM);
+    }
   }
 
   Future<void> removeFromAllList(String uid, String id) async {
     await removeFromList(authController.user!.uid, 'watchlist', id);
     await removeFromList(authController.user!.uid, 'current', id);
     await removeFromList(authController.user!.uid, 'completed', id);
-  }
-
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-  }
-
-  @override
-  void onClose() {
-    // TODO: implement onClose
-    super.onClose();
   }
 }

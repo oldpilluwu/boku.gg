@@ -4,6 +4,7 @@ import 'package:boku_gg/views/anime_details/widgets/add_to_list_button.dart';
 import 'package:boku_gg/views/anime_details/widgets/episode_list_gridview.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AnimePage extends StatelessWidget {
   AnimePage({
@@ -102,7 +103,6 @@ class AnimePage extends StatelessWidget {
                               );
                             }).toList()),
                       ),
-
                       Padding(
                         padding: EdgeInsets.only(left: 8.0, top: 10),
                         child: Container(
@@ -117,7 +117,6 @@ class AnimePage extends StatelessWidget {
                           ),
                         ),
                       ),
-
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
@@ -129,7 +128,6 @@ class AnimePage extends StatelessWidget {
                           ),
                         ),
                       ),
-
                       Container(
                         margin: EdgeInsets.all(8),
                         child: Row(
@@ -170,72 +168,105 @@ class AnimePage extends StatelessWidget {
                                     showModalBottomSheet(
                                       context: context,
                                       builder: (context) {
-                                        return Column(
-                                          children: [
-                                            AddToListButton(
-                                              title: 'Currently Watching',
-                                              onPressed: () async {
-                                              if(!libraryController.isNotPresentIn('current', id)) return;
-                                              await libraryController
-                                                  .removeFromAllList(
-                                                  authController
-                                                      .user!.uid,
-                                                  id);
-                                              await libraryController
-                                                  .addToList(
-                                                  authController
-                                                      .user!.uid,
-                                                  'current',
-                                                  id,
-                                                  title,
-                                                  imageLink);
-                                            },),
-
-                                            AddToListButton(title: "Completed",
-                                              onPressed: () async {
-                                                if(!libraryController.isNotPresentIn('completed', id)) return;
-                                                await libraryController
-                                                    .removeFromAllList(
-                                                    authController.user!.uid,
-                                                    id);
-                                                await libraryController
-                                                    .addToList(
-                                                    authController.user!.uid,
-                                                    'completed',
-                                                    id,
-                                                    title,
-                                                    imageLink);
-                                              },),
-
-                                            AddToListButton(title: "Watchlist", onPressed: () async {
-                                              if(!libraryController.isNotPresentIn('watchlist', id)) return;
-                                              await libraryController
-                                                  .removeFromAllList(
-                                                  authController
-                                                      .user!.uid,
-                                                  id)
-                                              ;
-                                              await libraryController
-                                                  .addToList(
-                                                  authController
-                                                      .user!.uid,
-                                                  'watchlist',
-                                                  id,
-                                                  title,
-                                                  imageLink);
-                                            },),
-
-                                            AddToListButton(title: "Remove from list",
-                                                color: ColorPalette.red,
+                                        return Obx(
+                                          () => Column(
+                                            children: [
+                                              AddToListButton(
+                                                title: 'Currently Watching',
+                                                color: !libraryController
+                                                        .isNotPresentIn(
+                                                            'current', id)
+                                                    ? Colors.greenAccent
+                                                    : ColorPalette
+                                                        .secondaryColor,
                                                 onPressed: () async {
+                                                  if (!libraryController
+                                                      .isNotPresentIn(
+                                                          'current', id))
+                                                    return;
                                                   await libraryController
                                                       .removeFromAllList(
-                                                      authController
-                                                          .user!.uid,
-                                                      id);
-                                                }),
-
-                                          ],
+                                                          authController
+                                                              .user!.uid,
+                                                          id);
+                                                  await libraryController
+                                                      .addToList(
+                                                          authController
+                                                              .user!.uid,
+                                                          'current',
+                                                          id,
+                                                          title,
+                                                          imageLink);
+                                                },
+                                              ),
+                                              AddToListButton(
+                                                title: "Completed",
+                                                color: !libraryController
+                                                        .isNotPresentIn(
+                                                            'completed', id)
+                                                    ? Colors.greenAccent
+                                                    : ColorPalette
+                                                        .secondaryColor,
+                                                onPressed: () async {
+                                                  if (!libraryController
+                                                      .isNotPresentIn(
+                                                          'completed', id))
+                                                    return;
+                                                  await libraryController
+                                                      .removeFromAllList(
+                                                          authController
+                                                              .user!.uid,
+                                                          id);
+                                                  await libraryController
+                                                      .addToList(
+                                                          authController
+                                                              .user!.uid,
+                                                          'completed',
+                                                          id,
+                                                          title,
+                                                          imageLink);
+                                                },
+                                              ),
+                                              AddToListButton(
+                                                title: "Watchlist",
+                                                color: !libraryController
+                                                        .isNotPresentIn(
+                                                            'watchlist', id)
+                                                    ? Colors.greenAccent
+                                                    : ColorPalette
+                                                        .secondaryColor,
+                                                onPressed: () async {
+                                                  if (!libraryController
+                                                      .isNotPresentIn(
+                                                          'watchlist', id))
+                                                    return;
+                                                  await libraryController
+                                                      .removeFromAllList(
+                                                          authController
+                                                              .user!.uid,
+                                                          id);
+                                                  await libraryController
+                                                      .addToList(
+                                                          authController
+                                                              .user!.uid,
+                                                          'watchlist',
+                                                          id,
+                                                          title,
+                                                          imageLink);
+                                                },
+                                              ),
+                                              AddToListButton(
+                                                  title: "Remove from list",
+                                                  color: ColorPalette.red,
+                                                  onPressed: () async {
+                                                    await libraryController
+                                                        .removeFromAllList(
+                                                            authController
+                                                                .user!.uid,
+                                                            id);
+                                                  }),
+                                            ],
+                                          ),
                                         );
                                       },
                                     );
@@ -258,7 +289,9 @@ class AnimePage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      EpisodeListGridview(totalEpisodes: totalEpisodes,),
+                      EpisodeListGridview(
+                        totalEpisodes: totalEpisodes,
+                      ),
                     ],
                   ),
                 ),

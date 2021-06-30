@@ -2,6 +2,7 @@ import 'package:boku_gg/commons/controller.dart';
 import 'package:boku_gg/views/authentication/password_change_request_page.dart';
 
 import 'package:boku_gg/views/authentication/sign_up_page.dart';
+
 import 'package:boku_gg/views/authentication/widgets/custom_text_field.dart';
 import 'package:boku_gg/views/authentication/widgets/positioned_logo.dart';
 import 'package:boku_gg/views/authentication/widgets/pressable_texts.dart';
@@ -31,15 +32,13 @@ class LoginPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 20),
-
             PositionedLogo(),
-
             SizedBox(height: 10),
-
             CustomTextField(controller: emailController, hintText: "Email"),
-
-            CustomTextField(controller: passwordController, hintText: "Password", isPassword: true),
-
+            CustomTextField(
+                controller: passwordController,
+                hintText: "Password",
+                isPassword: true),
             PressableText(
               alignment: Alignment.bottomRight,
               onPressed: () {
@@ -47,26 +46,21 @@ class LoginPage extends StatelessWidget {
               },
               highlightedText: "Forgot Password?",
             ),
-
-
             SizedBox(height: 40),
-
             SubmitButton(
-                text: "Login",
-                onPressed: () {
-                  authController.login(
-                  emailController.text, passwordController.text);
-                },
+              text: "Login",
+              onPressed: () {
+                authController.login(
+                    emailController.text, passwordController.text);
+              },
             ),
-
             PressableText(
-                onPressed: () {
-                  Get.to(() => SignUpPage());
-                },
-                highlightedText: "Register Now",
-                unhighlightedText: "Don't have an account? ",
+              onPressed: () {
+                Get.to(() => SignUpPage());
+              },
+              highlightedText: "Register Now",
+              unhighlightedText: "Don't have an account? ",
             ),
-
             SizedBox(height: 80),
           ],
         ),
