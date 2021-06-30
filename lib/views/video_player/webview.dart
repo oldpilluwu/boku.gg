@@ -29,7 +29,7 @@ class WebViewVideoPlayerState extends State<WebViewVideoPlayer> {
 
   Future setLandscape() async {
     await SystemChrome.setEnabledSystemUIOverlays([]);
-    SystemChrome.setPreferredOrientations([
+    await SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);
