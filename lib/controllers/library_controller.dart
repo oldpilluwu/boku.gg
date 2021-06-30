@@ -12,19 +12,6 @@ class LibraryController extends GetxController {
   var watchList = <AnimeDisplay>[].obs;
   var completedWatching = <AnimeDisplay>[].obs;
 
-  // Future<void> createNewLibrary(String uid) async {
-  //   try {
-  //     await libraryCollection.doc(uid).collection("current")
-  //     await libraryCollection.doc(uid).set({
-  //       "current": currentWatching,
-  //       "completed": completedWatching,
-  //       "watch_list": watchList,
-  //     });
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
-
   Future<void> getUserLibrary(String uid) async {
     try {
       currentWatching
@@ -87,23 +74,27 @@ class LibraryController extends GetxController {
     List<AnimeDisplay> list = [];
     switch (listName) {
       case 'current':
-        // return currentWatching.where((anime) => anime.id == id).isEmpty;
         list.addAll(currentWatching);
         break;
       case 'completed':
-        // return completedWatching.where((anime) => anime.id == id).isEmpty;
         list.addAll(completedWatching);
         break;
       case 'watchlist':
-        // return watchList.where((anime) => anime.id == id).isEmpty;
         list.addAll(watchList);
         break;
       default:
         break;
     }
-
     bool res = list.where((element) => element.id == id).isEmpty;
-    print("the item is not in the list:" + res.toString());
+    return res;
+  }
+
+  bool isNotBookmarked(String id) {
+    List<AnimeDisplay> list = [];
+        list.addAll(currentWatching);
+        list.addAll(completedWatching);
+        list.addAll(watchList);
+    bool res = list.where((element) => element.id == id).isEmpty;
     return res;
   }
 

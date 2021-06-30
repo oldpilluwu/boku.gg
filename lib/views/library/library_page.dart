@@ -1,5 +1,6 @@
 import 'package:boku_gg/commons/color_palette.dart';
 import 'package:boku_gg/commons/controller.dart';
+import 'package:boku_gg/commons/font_resource.dart';
 import 'package:boku_gg/views/library/widgets/library_list.dart';
 import 'package:boku_gg/widgets/logout_icon.dart';
 import 'package:boku_gg/widgets/navigation_bar.dart';
@@ -19,13 +20,11 @@ class LibraryPage extends StatelessWidget {
               actions: [
                 LogoutIconButton(),
               ],
-              // automaticallyImplyLeading: false,
               elevation: 0,
               title: Text(
                 "boku.gg",
                 textAlign: TextAlign.center,
-                style: TextStyle(color: ColorPalette.textColor),
-                // ),
+                style: TextStyle(color: ColorPalette.textColor, fontFamily: FontResource.secondaryFont,),
               ),
               backgroundColor: ColorPalette.primaryColor,
               bottom: TabBar(
@@ -42,19 +41,22 @@ class LibraryPage extends StatelessWidget {
                   Tab(
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text("Watching"),
+                      child: Text("Watching",
+                        style: TextStyle(fontFamily: FontResource.secondaryFont,),),
                     ),
                   ),
                   Tab(
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text("WatchList"),
+                      child: Text("Watchlist",
+                      style: TextStyle(fontFamily: FontResource.secondaryFont,),),
                     ),
                   ),
                   Tab(
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text("Completed"),
+                      child: Text("Completed",
+                        style: TextStyle(fontFamily: FontResource.secondaryFont,),),
                     ),
                   ),
                 ],

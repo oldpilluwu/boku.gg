@@ -8,7 +8,7 @@ class WebViewVideoPlayer extends StatefulWidget {
   WebViewVideoPlayer({
     required this.link});
 
-  String link;
+  final String link;
   @override
   WebViewVideoPlayerState createState() => WebViewVideoPlayerState();
 }
@@ -18,7 +18,8 @@ class WebViewVideoPlayerState extends State<WebViewVideoPlayer> {
   void initState() {
     super.initState();
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
-    // setLandscape();
+
+    setLandscape();
   }
 
   void dispose() {
@@ -28,7 +29,7 @@ class WebViewVideoPlayerState extends State<WebViewVideoPlayer> {
 
   Future setLandscape() async {
     await SystemChrome.setEnabledSystemUIOverlays([]);
-    await SystemChrome.setPreferredOrientations([
+    SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);
@@ -46,13 +47,17 @@ class WebViewVideoPlayerState extends State<WebViewVideoPlayer> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
+        color: Colors.black,
         alignment: Alignment.center,
-        child: WebView(
-          initialUrl: widget.link,
-          javascriptMode: JavascriptMode.unrestricted,
-          navigationDelegate: (NavigationRequest request) {
-            return NavigationDecision.prevent;
-          },
+        child: AspectRatio(
+          aspectRatio: 16/9,
+          child: WebView(
+            initialUrl: widget.link,
+            javascriptMode: JavascriptMode.unrestricted,
+            navigationDelegate: (NavigationRequest request) {
+              return NavigationDecision.prevent;
+            },
+          ),
         ),
       ),
     );

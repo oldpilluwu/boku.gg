@@ -1,5 +1,6 @@
 import 'package:boku_gg/commons/color_palette.dart';
 import 'package:boku_gg/commons/controller.dart';
+import 'package:boku_gg/commons/font_resource.dart';
 import 'package:boku_gg/models/anime_display_model.dart';
 
 import 'package:boku_gg/views/library/widgets/listed_anime.dart';
@@ -43,7 +44,7 @@ class SearchResultPage extends StatelessWidget {
                 "Search Results",
                 style: TextStyle(
                   fontSize: 24,
-                  // fontWeight: FontWeight.w400,
+                  fontFamily: FontResource.secondaryFont,
                   color: ColorPalette.textColor,
                 ),
               )),

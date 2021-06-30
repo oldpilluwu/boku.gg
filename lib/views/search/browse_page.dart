@@ -1,5 +1,6 @@
 import 'package:boku_gg/commons/color_palette.dart';
 import 'package:boku_gg/commons/controller.dart';
+import 'package:boku_gg/commons/font_resource.dart';
 import 'package:boku_gg/commons/genre_list.dart';
 import 'package:boku_gg/views/search/search_result.dart';
 import 'package:boku_gg/views/search/widgets/genre_button.dart';
@@ -33,7 +34,7 @@ class BrowsePage extends StatelessWidget {
                 "Search by Genre",
                 style: TextStyle(
                   fontSize: 24,
-                  // fontWeight: FontWeight.w400,
+                  fontFamily: FontResource.secondaryFont,
                   color: ColorPalette.textColor,
                 ),
               )),

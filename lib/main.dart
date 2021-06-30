@@ -1,3 +1,4 @@
+import 'package:boku_gg/commons/font_resource.dart';
 import 'package:boku_gg/controllers/anime_controller.dart';
 import 'package:boku_gg/controllers/auth_controller.dart';
 import 'package:boku_gg/controllers/library_controller.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.blue,
           brightness: Brightness.dark,
-          fontFamily: 'Comfortaa'),
+          fontFamily: FontResource.primaryFont),
       home: PlaceHolderPage(),
     );
   }

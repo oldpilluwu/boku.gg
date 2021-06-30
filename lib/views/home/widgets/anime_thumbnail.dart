@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:boku_gg/commons/font_resource.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -34,26 +35,25 @@ class AnimeThumbnail extends GestureDetector {
                       borderRadius: BorderRadius.circular(15),
                       child:
                       Container(
-                    padding: const EdgeInsets.all(5.0),
-                    alignment: Alignment.bottomCenter,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: <Color>[
-                          Colors.black.withAlpha(0),
-                          Colors.black12,
-                          Colors.black,
-                        ],
-                      ),
-                    ),
-                    child: Text(
-                      title,
-                      style: TextStyle(color: Colors.white, fontSize: 16.0),
-                      textAlign: TextAlign.start,
-                    ),
-                  )
-  ),
+                        padding: const EdgeInsets.all(5.0),
+                        alignment: Alignment.bottomCenter,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: <Color>[
+                              Colors.black.withAlpha(0),
+                              Colors.black12,
+                              Colors.black,
+                            ],
+                          ),
+                        ),
+                        child: Text(
+                          title,
+                          style: TextStyle(color: Colors.white, fontSize: 16.0, fontFamily: FontResource.secondaryFont),
+                          textAlign: TextAlign.center,),
+                     )
+                  ),
                 ],
               ),
             ));

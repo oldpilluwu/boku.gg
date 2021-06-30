@@ -1,5 +1,6 @@
 import 'package:boku_gg/commons/color_palette.dart';
 import 'package:boku_gg/commons/controller.dart';
+import 'package:boku_gg/commons/font_resource.dart';
 import 'package:boku_gg/views/anime_details/widgets/add_to_list_button.dart';
 import 'package:boku_gg/views/anime_details/widgets/episode_list_gridview.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -26,6 +27,11 @@ class AnimePage extends StatelessWidget {
   final Color textColor = Color(0xFFDEDEDE);
   final Color statusBarColor = ColorPalette.green;
   final Color statusTextColor = Color(0xFF282828);
+
+  bool hasFinished(String status) {
+    if(status == "Completed") return true;
+    else return false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +69,7 @@ class AnimePage extends StatelessWidget {
                             title,
                             textAlign: TextAlign.center,
                             style: TextStyle(
+                              fontFamily: FontResource.secondaryFont,
                               fontSize: 30,
                               color: textColor,
                             ),
@@ -112,7 +119,7 @@ class AnimePage extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 20,
                               color: textColor,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         ),
@@ -137,140 +144,151 @@ class AnimePage extends StatelessWidget {
                               child: Container(
                                 padding: EdgeInsets.fromLTRB(2, 8, 2, 8),
                                 decoration: BoxDecoration(
-                                  color: statusBarColor,
+                                  color: hasFinished(status)
+                                      ? ColorPalette.green
+                                      : ColorPalette.orange,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Text(
                                   "Status: " + status,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
+                                    fontFamily: FontResource.secondaryFont,
                                     fontSize: 18,
                                     color: statusTextColor,
                                   ),
                                 ),
-                                // ),
                               ),
                             ),
                             Expanded(flex: 4, child: Container()),
                             Expanded(
                               flex: 4,
                               child: Container(
-                                child: FloatingActionButton(
-                                  heroTag: "add",
-                                  child: Icon(
-                                    Icons.add,
-                                    color: ColorPalette.textColor,
-                                  ),
-                                  backgroundColor: ColorPalette
-                                      .secondaryColorDark
-                                      .withOpacity(.75),
-                                  onPressed: () {
-                                    showModalBottomSheet(
-                                      context: context,
-                                      builder: (context) {
-                                        return Obx(
-                                          () => Column(
-                                            children: [
-                                              AddToListButton(
-                                                title: 'Currently Watching',
-                                                color: !libraryController
-                                                        .isNotPresentIn(
-                                                            'current', id)
-                                                    ? Colors.greenAccent
-                                                    : ColorPalette
-                                                        .secondaryColor,
-                                                onPressed: () async {
-                                                  if (!libraryController
-                                                      .isNotPresentIn(
-                                                          'current', id))
-                                                    return;
-                                                  await libraryController
-                                                      .removeFromAllList(
-                                                          authController
-                                                              .user!.uid,
-                                                          id);
-                                                  await libraryController
-                                                      .addToList(
-                                                          authController
-                                                              .user!.uid,
-                                                          'current',
-                                                          id,
-                                                          title,
-                                                          imageLink);
-                                                },
-                                              ),
-                                              AddToListButton(
-                                                title: "Completed",
-                                                color: !libraryController
-                                                        .isNotPresentIn(
-                                                            'completed', id)
-                                                    ? Colors.greenAccent
-                                                    : ColorPalette
-                                                        .secondaryColor,
-                                                onPressed: () async {
-                                                  if (!libraryController
-                                                      .isNotPresentIn(
-                                                          'completed', id))
-                                                    return;
-                                                  await libraryController
-                                                      .removeFromAllList(
-                                                          authController
-                                                              .user!.uid,
-                                                          id);
-                                                  await libraryController
-                                                      .addToList(
-                                                          authController
-                                                              .user!.uid,
-                                                          'completed',
-                                                          id,
-                                                          title,
-                                                          imageLink);
-                                                },
-                                              ),
-                                              AddToListButton(
-                                                title: "Watchlist",
-                                                color: !libraryController
-                                                        .isNotPresentIn(
-                                                            'watchlist', id)
-                                                    ? Colors.greenAccent
-                                                    : ColorPalette
-                                                        .secondaryColor,
-                                                onPressed: () async {
-                                                  if (!libraryController
-                                                      .isNotPresentIn(
-                                                          'watchlist', id))
-                                                    return;
-                                                  await libraryController
-                                                      .removeFromAllList(
-                                                          authController
-                                                              .user!.uid,
-                                                          id);
-                                                  await libraryController
-                                                      .addToList(
-                                                          authController
-                                                              .user!.uid,
-                                                          'watchlist',
-                                                          id,
-                                                          title,
-                                                          imageLink);
-                                                },
-                                              ),
-                                              AddToListButton(
-                                                  title: "Remove from list",
-                                                  color: ColorPalette.red,
+                                child: Obx(
+                                  () => FloatingActionButton(
+                                    heroTag: "add",
+                                    child: Icon(
+                                        !libraryController
+                                            .isNotBookmarked(id)
+                                            ? Icons.bookmark_added
+                                            : Icons.bookmark_add,
+                                      color: !libraryController
+                                          .isNotBookmarked(id)
+                                          ? ColorPalette.secondaryColorDark
+                                          : ColorPalette.textColor,
+                                    ),
+                                    backgroundColor: !libraryController
+                                        .isNotBookmarked(id)
+                                        ? ColorPalette.secondaryColor
+                                        : ColorPalette.secondaryColorDark.withOpacity(.75),
+                                    onPressed: () {
+                                      showModalBottomSheet(
+                                        context: context,
+                                        builder: (context) {
+                                          return Obx(
+                                            () => Column(
+                                              children: [
+                                                AddToListButton(
+                                                  title: 'Currently Watching',
+                                                  color: !libraryController
+                                                          .isNotPresentIn(
+                                                              'current', id)
+                                                      ? ColorPalette.green
+                                                      : ColorPalette
+                                                          .secondaryColor,
                                                   onPressed: () async {
+                                                    if (!libraryController
+                                                        .isNotPresentIn(
+                                                            'current', id))
+                                                      return;
                                                     await libraryController
                                                         .removeFromAllList(
                                                             authController
                                                                 .user!.uid,
                                                             id);
-                                                  }),
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  },
+                                                    await libraryController
+                                                        .addToList(
+                                                            authController
+                                                                .user!.uid,
+                                                            'current',
+                                                            id,
+                                                            title,
+                                                            imageLink);
+                                                  },
+                                                ),
+                                                AddToListButton(
+                                                  title: "Completed",
+                                                  color: !libraryController
+                                                          .isNotPresentIn(
+                                                              'completed', id)
+                                                      ? ColorPalette.green
+                                                      : ColorPalette
+                                                          .secondaryColor,
+                                                  onPressed: () async {
+                                                    if (!libraryController
+                                                        .isNotPresentIn(
+                                                            'completed', id))
+                                                      return;
+                                                    await libraryController
+                                                        .removeFromAllList(
+                                                            authController
+                                                                .user!.uid,
+                                                            id);
+                                                    await libraryController
+                                                        .addToList(
+                                                            authController
+                                                                .user!.uid,
+                                                            'completed',
+                                                            id,
+                                                            title,
+                                                            imageLink);
+                                                  },
+                                                ),
+                                                AddToListButton(
+                                                  title: "Watchlist",
+                                                  color: !libraryController
+                                                          .isNotPresentIn(
+                                                              'watchlist', id)
+                                                      ? ColorPalette.green
+                                                      : ColorPalette
+                                                          .secondaryColor,
+                                                  onPressed: () async {
+                                                    if (!libraryController
+                                                        .isNotPresentIn(
+                                                            'watchlist', id))
+                                                      return;
+                                                    await libraryController
+                                                        .removeFromAllList(
+                                                            authController
+                                                                .user!.uid,
+                                                            id);
+                                                    await libraryController
+                                                        .addToList(
+                                                            authController
+                                                                .user!.uid,
+                                                            'watchlist',
+                                                            id,
+                                                            title,
+                                                            imageLink);
+                                                  },
+                                                ),
+                                                AddToListButton(
+                                                    title: "Remove from list",
+                                                    color: ColorPalette.red,
+                                                    onPressed: () async {
+                                                      await libraryController
+                                                          .removeFromAllList(
+                                                              authController
+                                                                  .user!.uid,
+                                                              id);
+                                                    }),
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
+                                  ),
                                 ),
                               ),
                             ),
