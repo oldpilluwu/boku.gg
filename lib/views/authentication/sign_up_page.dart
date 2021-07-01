@@ -49,7 +49,7 @@ class SignUpPage extends StatelessWidget {
 
             PressableText(
                 onPressed: () {
-                  Get.to(() => LoginPage());
+                  Get.back();
                 },
                 unhighlightedText: "Already have an account? ",
                 highlightedText: "Sign in."
