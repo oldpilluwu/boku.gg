@@ -1,3 +1,5 @@
+import 'package:boku_gg/commons/color_palette.dart';
+import 'package:boku_gg/commons/font_resource.dart';
 import 'package:boku_gg/controllers/anime_controller.dart';
 import 'package:boku_gg/controllers/auth_controller.dart';
 import 'package:boku_gg/controllers/library_controller.dart';
@@ -6,11 +8,15 @@ import 'package:boku_gg/views/placeholder_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 bool USE_FIRESTORE_EMULATOR = false;
 
 void main() async {
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    systemNavigationBarColor: Colors.black
+  ));
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   if (USE_FIRESTORE_EMULATOR) {
@@ -35,7 +41,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.blue,
           brightness: Brightness.dark,
-          fontFamily: 'Comfortaa'),
+          fontFamily: FontResource.primaryFont),
       home: PlaceHolderPage(),
     );
   }

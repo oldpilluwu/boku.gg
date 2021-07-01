@@ -1,4 +1,5 @@
 
+import 'package:boku_gg/commons/font_resource.dart';
 import 'package:flutter/material.dart';
 
 class GenreButton extends SizedBox {
@@ -18,7 +19,7 @@ class GenreButton extends SizedBox {
             child: FittedBox(
               fit: BoxFit.fill,
               child: Text(title,
-                style: TextStyle(color: textColor, fontSize: fontSize, fontWeight: FontWeight.bold),
+                style: TextStyle(color: textColor, fontSize: fontSize, fontWeight: FontWeight.w500, fontFamily: FontResource.secondaryFont),
                 textAlign: TextAlign.center,
               ),
             ),

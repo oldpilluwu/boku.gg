@@ -19,12 +19,9 @@ class EpisodeListGridview extends StatelessWidget {
         crossAxisCount: 4,
         childAspectRatio: 2,
       ),
-
       padding: const EdgeInsets.all(2),
       controller: ScrollController(),
       shrinkWrap: true,
-      // crossAxisCount: 4,
-      // childAspectRatio: 2,
       addAutomaticKeepAlives: false,
       itemCount: totalEpisodes,
       itemBuilder: (BuildContext context, int index) {

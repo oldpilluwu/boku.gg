@@ -1,4 +1,5 @@
 import 'package:boku_gg/commons/color_palette.dart';
+import 'package:boku_gg/commons/font_resource.dart';
 import 'package:flutter/material.dart';
 
 class SubmitButton extends Container {
@@ -12,7 +13,7 @@ class SubmitButton extends Container {
             onPressed: onPressed,
             child: Text(
             text,
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.normal, fontFamily: FontResource.secondaryFont),
             ),
             style: ElevatedButton.styleFrom(
             padding: EdgeInsets.fromLTRB(45, 12, 45, 12),

@@ -1,7 +1,5 @@
 import 'package:boku_gg/commons/color_palette.dart';
-import 'package:boku_gg/views/video_player/webview.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class EpisodeQuality extends StatelessWidget {
   final String quality;
@@ -10,25 +8,33 @@ class EpisodeQuality extends StatelessWidget {
 
   EpisodeQuality(
       {required this.quality, required this.link, required this.onPressed});
-
   @override
   Widget build(BuildContext context) {
-    String slicedQualityText =
-        (quality.replaceAll(" - mp4)", "")).replaceAll("(", "");
-    if (slicedQualityText == "HDP") slicedQualityText = "HDP (Recommmended)";
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        margin: EdgeInsets.all(5),
+        alignment: Alignment.center,
+        margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
         decoration: BoxDecoration(
-            border: Border.all(color: ColorPalette.secondaryColor),
-            borderRadius: BorderRadius.circular(25)),
+            border: Border.all(color: ColorPalette.secondaryColor, width: 1.5),
+            borderRadius: BorderRadius.circular(50)),
         height: 60,
-        // color: ColorPalette.secondaryColor,
-        padding: EdgeInsets.fromLTRB(15, 22, 15, 15),
-        child: Text(
-          slicedQualityText,
-          style: TextStyle(color: ColorPalette.textColor),
+        padding: EdgeInsets.fromLTRB(15, 15, 15, 15),
+        child: Center(
+          child: Row(
+            children: [
+              Expanded(flex: 7, child: Container()),
+              Expanded(flex: 2, child: Icon(Icons.play_circle_outlined, color: ColorPalette.red,)),
+              Expanded(
+                  flex: 2,
+                  child: Text(
+                quality,
+                style: TextStyle(color: ColorPalette.textColor, fontSize: 18),
+              )),
+              Expanded(flex: 7, child: Container()),
+
+            ],
+          ),
         ),
       ),
     );

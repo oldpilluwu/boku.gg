@@ -1,5 +1,6 @@
 import 'package:boku_gg/commons/color_palette.dart';
 import 'package:boku_gg/commons/controller.dart';
+import 'package:boku_gg/commons/font_resource.dart';
 import 'package:boku_gg/views/home/widgets/anime_display_view.dart';
 import 'package:boku_gg/widgets/logout_icon.dart';
 import 'package:boku_gg/widgets/navigation_bar.dart';
@@ -23,8 +24,7 @@ class TabBarHomePage extends StatelessWidget {
               title: Text(
                 "boku.gg",
                 textAlign: TextAlign.center,
-                style: TextStyle(color: ColorPalette.textColor),
-                // ),
+                style: TextStyle(color: ColorPalette.textColor, fontFamily: FontResource.secondaryFont),
               ),
               backgroundColor: ColorPalette.primaryColor,
               bottom: TabBar(
@@ -41,13 +41,15 @@ class TabBarHomePage extends StatelessWidget {
                   Tab(
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text("Popular"),
+                      child: Text("Popular",
+                        style: TextStyle(fontFamily: FontResource.secondaryFont,),),
                     ),
                   ),
                   Tab(
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text("Recent"),
+                      child: Text("Recent",
+                        style: TextStyle(fontFamily: FontResource.secondaryFont,),),
                     ),
                   ),
                 ],

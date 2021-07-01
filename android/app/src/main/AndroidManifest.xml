@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.boku_gg">
    <application
-        android:label="boku_gg"
+        android:label="boku.gg"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

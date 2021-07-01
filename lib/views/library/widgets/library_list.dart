@@ -17,8 +17,6 @@ class LibraryListView extends StatelessWidget {
       color: ColorPalette.primaryColor,
       child: Obx(() {
         return ListView.builder(
-          // Need to fetch user's lists from Firebase
-
           controller: ScrollController(),
           itemCount: list.length,
           itemBuilder: (context, index) {

@@ -17,7 +17,6 @@ class ResetPasswordPage extends StatelessWidget {
 
   Widget _buildContent() {
     return SafeArea(
-      // padding: const EdgeInsets.all(10.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,7 +36,6 @@ class ResetPasswordPage extends StatelessWidget {
             margin: EdgeInsets.fromLTRB(30, 0, 30, 10),
             decoration:
             BoxDecoration(
-              // color: Colors.white,
               color: Color(0xffcdcdcd),
               borderRadius: BorderRadius.circular(5),
             ),
@@ -52,7 +50,6 @@ class ResetPasswordPage extends StatelessWidget {
                 hintStyle: TextStyle(
                   color: ColorPalette.primaryColor.withOpacity(.5),
                 ),
-                // fillColor: Colors.red,
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
               ),
@@ -64,7 +61,6 @@ class ResetPasswordPage extends StatelessWidget {
             margin: EdgeInsets.fromLTRB(30, 10, 30, 10),
             decoration:
             BoxDecoration(
-              // color: Colors.white,
               color: Color(0xffcdcdcd),
               borderRadius: BorderRadius.circular(5),
             ),
@@ -79,19 +75,12 @@ class ResetPasswordPage extends StatelessWidget {
                 hintStyle: TextStyle(
                   color: ColorPalette.primaryColor.withOpacity(.5),
                 ),
-                // fillColor: Colors.red,
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
               ),
             ),
           ),
           // Image(image: image)
-
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.end,
-          //   children: [
-          // ],
-          // ),
 
           SizedBox(height: 50),
 
