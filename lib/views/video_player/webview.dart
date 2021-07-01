@@ -1,6 +1,6 @@
 import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:wakelock/wakelock.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -18,7 +18,6 @@ class WebViewVideoPlayerState extends State<WebViewVideoPlayer> {
   void initState() {
     super.initState();
     Wakelock.enable();
-    print("Startinh");
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }
   void dispose() {
@@ -26,25 +25,41 @@ class WebViewVideoPlayerState extends State<WebViewVideoPlayer> {
     super.dispose();
   }
 
+  bool isOnLandscape(BuildContext context){
+    if(MediaQuery.of(context).orientation == Orientation.landscape)
+      return true;
+    else  return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child:  Container(
-          color: Colors.black,
-          alignment: Alignment.center,
-          child: AspectRatio(
-          aspectRatio: 16/9,
-          child: WebView(
-          initialUrl: widget.link,
-          javascriptMode: JavascriptMode.unrestricted,
-          navigationDelegate: (NavigationRequest request) {
-        return NavigationDecision.prevent;
-      },
-      ),
-      ),//
-      )),
+      backgroundColor: Colors.black,
+      body: Column(
+          children: [
+            Expanded(flex: isOnLandscape(context) ? 0 : 100 , child: Container()),
+            Expanded(
+              flex: 90,
+              child: Container(
+                color: Colors.black,
+                alignment: Alignment.center,
+                child: GestureDetector(
+                    onVerticalDragUpdate: (update) {},
+                    child: AspectRatio(
+                      aspectRatio: isOnLandscape(context) ? 16/9 : 4/3,
+                      child: WebView(
+                      initialUrl: widget.link,
+                      javascriptMode: JavascriptMode.unrestricted,
+                      navigationDelegate: (NavigationRequest request) {
+                      return NavigationDecision.prevent;},
+                      ),
+                    ),
+                ),
+              ),
+            ),
+            Expanded(flex: isOnLandscape(context) ? 0 : 100 , child: Container()),
+          ],
+        )
     );
   }
 }
-
