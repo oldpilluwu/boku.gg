@@ -19,7 +19,6 @@ class AuthController extends GetxController {
     try {
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      //  libraryController.createNewLibrary(_firebaseUser.value!.uid);
       Get.back();
     } catch (err) {
       Get.snackbar(

@@ -9,14 +9,6 @@ class AnimeController extends GetxController {
   static AnimeController instance = Get.find();
   var isLoading = true.obs;
   var episodeLoading = true.obs;
-  // var popularAnimeDisplayList = <AnimeDisplay>[].obs;
-  // var recentAnimeDisplayList = <AnimeDisplay>[].obs;
-
-  // int popularPage = 1;
-  // int recentPage = 1;
-
-  // ScrollController popularScrollController = ScrollController();
-  // ScrollController recentScrollController = ScrollController();
 
   var popularAnime = AnimeType(URLStrings.getPopularUrl).obs;
   var recentAnime = AnimeType(URLStrings.getRecentUrl).obs;
@@ -36,7 +28,6 @@ class AnimeController extends GetxController {
     popularAnime.value.scrollController.addListener(() {
       if (popularAnime.value.scrollController.position.pixels ==
           popularAnime.value.scrollController.position.maxScrollExtent) {
-        print('Scrolling');
         fetchAnimeDisplayList(popularAnime);
       }
     });
@@ -56,7 +47,6 @@ class AnimeController extends GetxController {
       if (animeList != null) {
         type.value.animeDisplayList.addAll(animeList);
         type.refresh();
-        //print(popularAnime.map((e) => print(e)));
         type.value.page++;
       }
     } finally {
@@ -70,10 +60,8 @@ class AnimeController extends GetxController {
       Anime? responseAnime =
           await ApiService.fetchSingleAnime(URLStrings.getAnimeDetailsUrl, id);
       if (responseAnime != null) {
-        //  print(responseAnime.title);
         activeAnime = responseAnime.obs;
         activeAnime!.refresh();
-        //print(popularAnime.map((e) => print(e)));
       }
     } finally {
       isLoading(false);
@@ -88,61 +76,9 @@ class AnimeController extends GetxController {
         episodeQuality = responseEpisode.obs;
         episodeQuality!.refresh();
         activeEpisode = episode;
-        //print(popularAnime.map((e) => print(e)));
       }
     } finally {
       episodeLoading(false);
     }
-  }
-
-  // @override
-  // void onInit() {
-  //   fetchPopularAnimeList();
-  //   fetchRecentAnimeList();
-  //   super.onInit();
-  //   popularScrollController.addListener(() {
-  //     if (popularScrollController.position.pixels ==
-  //         popularScrollController.position.maxScrollExtent) {
-  //       fetchPopularAnimeList();
-  //     }
-  //   });
-  //   recentScrollController.addListener(() {
-  //     if (recentScrollController.position.pixels ==
-  //         recentScrollController.position.maxScrollExtent) {
-  //       fetchRecentAnimeList();
-  //     }
-  //   });
-  // }
-
-  // void fetchPopularAnimeList() async {
-  //   try {
-  //     isLoading(true);
-  //     var popularAnime = await ApiService.fetchPopularAnimeDisplay(popularPage);
-  //     if (popularAnime != null) {
-  //       popularAnimeDisplayList.addAll(popularAnime);
-  //       //print(popularAnime.toString());
-  //       popularPage++;
-  //     }
-  //   } finally {
-  //     isLoading(false);
-  //   }
-  // }
-
-  // void fetchRecentAnimeList() async {
-  //   try {
-  //     isLoading(true);
-  //     var recentAnime = await ApiService.fetchRecentAnimeDisplay(recentPage);
-  //     if (recentAnime != null) {
-  //       recentAnimeDisplayList.addAll(recentAnime);
-  //       recentPage++;
-  //     }
-  //   } finally {
-  //     isLoading(false);
-  //   }
-  // }
-
-  @override
-  void onClose() {
-    super.onClose();
   }
 }

@@ -41,7 +41,6 @@ class SearchController extends GetxController {
           await ApiService.fetchSearchAnimeDisplay(searchText, page);
       if (animeList != null && animeList.isNotEmpty) {
         searchAnimeList.addAll(animeList);
-        //print(popularAnime.map((e) => print(e)));
         page++;
       }
     } finally {
