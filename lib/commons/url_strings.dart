@@ -1,5 +1,5 @@
 class URLStrings {
-  static String hostWebsite = 'https://gogoanime-api-project.herokuapp.com';
+  static String hostWebsite = 'https://cygnet-suspenders.cyclic.app';
   static String getPopularUrl = hostWebsite + '/popular';
   static String getRecentUrl = hostWebsite + '/recent';
   static String getAnimeDetailsUrl = hostWebsite + '/anime';
